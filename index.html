@@ -486,7 +486,7 @@
       <div class="sec" data-sec="2">
         <h4>Front</h4><p class="hint">Gym or team name across the chest, plus your logo.</p>
         <div class="two">
-          <div class="field"><label class="f">Chest line 1</label><input type="text" id="fL1" maxlength="16" placeholder="GARAGE"></div>
+          <div class="field"><label class="f">Chest line 1</label><input type="text" id="fL1" maxlength="16" placeholder="TEAM NAME"></div>
           <div class="field"><label class="f">Chest line 2</label><input type="text" id="fL2" maxlength="18" placeholder="optional"></div>
         </div>
         <div class="field"><label class="f">Lettering</label><div class="styles" id="styles"></div></div>
@@ -500,20 +500,20 @@
       <div class="sec" data-sec="3">
         <h4>Back</h4><p class="hint">Name with an underline bar, a sponsor logo, a number and a bottom line.</p>
         <div class="two keep" style="grid-template-columns:2fr 1fr">
-          <div class="field"><label class="f">Name</label><input type="text" id="bName" maxlength="22" placeholder="MARK SCOTT"></div>
+          <div class="field"><label class="f">Name</label><input type="text" id="bName" maxlength="22" placeholder="YOUR NAME"></div>
           <div class="field"><label class="f">Number</label><input type="text" id="bNum" maxlength="3" placeholder="7" inputmode="numeric"></div>
         </div>
         <div class="field"><label class="check"><input type="checkbox" id="bUl"> Underline bar under name</label></div>
         <div class="field"><label class="f">Sponsor / back logo</label><div class="dropz" data-target="back"><div class="dropInner"></div><input type="file" accept="image/*" hidden></div></div>
         <div class="field" id="backSizeF"><label class="f">Back logo size</label><input type="range" id="bSize" min="40" max="170"></div>
-        <div class="field"><label class="f">Bottom line</label><input type="text" id="bBottom" maxlength="24" placeholder="Rest Round"></div>
+        <div class="field"><label class="f">Bottom line</label><input type="text" id="bBottom" maxlength="24" placeholder="Train hard"></div>
       </div>
 
       <div class="sec" data-sec="4">
         <h4>Sleeves</h4><p class="hint">A flag on each sleeve and a nickname tag.</p>
         <div class="sub">Left sleeve</div><div class="flags" id="flagsL"></div>
         <div class="sub">Right sleeve</div><div class="flags" id="flagsR"></div>
-        <div class="field" style="margin-top:18px"><label class="f">Sleeve nickname tag</label><input type="text" id="sTag" maxlength="8" placeholder="EDIE"></div>
+        <div class="field" style="margin-top:18px"><label class="f">Sleeve nickname tag</label><input type="text" id="sTag" maxlength="8" placeholder="NICKNAME"></div>
       </div>
 
       <div class="sec" data-sec="5">
@@ -558,10 +558,10 @@
       </div>
       <div class="two">
         <div class="field"><label class="f">Instagram / LINE</label><input type="text" id="oSocial" placeholder="@yourhandle"></div>
-        <div class="field"><label class="f">Country</label><input type="text" id="oCountry" placeholder="Thailand"></div>
+        <div class="field"><label class="f">Country</label><input type="text" id="oCountry" placeholder="Your country"></div>
       </div>
       <div class="field"><label class="f">Gym / team</label><input type="text" id="oGym"></div>
-      <div class="field"><label class="f">Team roster (optional): name, number, size, one per line</label><textarea id="oRoster" placeholder="MARK SCOTT, 7, L&#10;EDIE BROUGHTON, 12, S"></textarea></div>
+      <div class="field"><label class="f">Team roster (optional): name, number, size, one per line</label><textarea id="oRoster" placeholder="ALEX, 7, L&#10;JORDAN, 12, S"></textarea></div>
       <div class="field"><label class="f">Notes</label><textarea id="oNotes" style="min-height:60px" placeholder="Anything we should know"></textarea></div>
       <button class="cta" type="submit" style="width:100%;justify-content:center">Submit order →</button>
       <div class="done" id="done">
@@ -628,7 +628,7 @@ const TEMPLATES = [
   {id:'clean',     name:'Clean Raglan', cw:7},
 ];
 const COLORWAYS = [
-  {n:'Garage Purple', main:'#1c0a36', sleeve:'#8a3cff', pattern:'#9d4dff', trim:'#12051f', text:'#ffffff'},
+  {n:'Ultra Violet',  main:'#1c0a36', sleeve:'#8a3cff', pattern:'#9d4dff', trim:'#12051f', text:'#ffffff'},
   {n:'Pro Mono',      main:'#0b0b0d', sleeve:'#ffffff', pattern:'#ffffff', trim:'#0b0b0d', text:'#ffffff'},
   {n:'Neon Blur',     main:'#1d0838', sleeve:'#1d0838', pattern:'#9d5cff', trim:'#1d0838', text:'#e3ccff'},
   {n:'Deep Ocean',    main:'#08192b', sleeve:'#0ea5c6', pattern:'#38d9f0', trim:'#050f1a', text:'#ffffff'},
@@ -638,7 +638,7 @@ const COLORWAYS = [
   {n:'White Ice',     main:'#f2f4f8', sleeve:'#1d4ed8', pattern:'#3b82f6', trim:'#0f172a', text:'#0f172a'},
   {n:'Sunset',        main:'#1a0b1e', sleeve:'#ff6b35', pattern:'#ff9f1c', trim:'#12061a', text:'#ffffff'},
   {n:'Hot Pink',      main:'#1b0a18', sleeve:'#ff4fd8', pattern:'#ff8ae2', trim:'#12050f', text:'#ffffff'},
-  {n:'Siam Navy',     main:'#0b1c4a', sleeve:'#e11d2a', pattern:'#ffffff', trim:'#081335', text:'#ffffff'},
+  {n:'Navy Red',      main:'#0b1c4a', sleeve:'#e11d2a', pattern:'#ffffff', trim:'#081335', text:'#ffffff'},
   {n:'Field Olive',   main:'#23281c', sleeve:'#6b7a4b', pattern:'#a3b57a', trim:'#161a12', text:'#e8eddc'},
 ];
 const COLOR_SLOTS = [['main','Body'],['sleeve','Sleeves'],['pattern','Pattern'],['trim','Collar & cuffs'],['text','Text']];
@@ -655,7 +655,6 @@ const SIZES = ['XS','S','M','L','XL','2XL','3XL'];
 function star(cx,cy,r,n=5,inner=.4){ let d=''; for(let i=0;i<n*2;i++){ const a=Math.PI/n*i-Math.PI/2, rr=i%2?r*inner:r; d+=(i?'L':'M')+(cx+rr*Math.cos(a)).toFixed(2)+','+(cy+rr*Math.sin(a)).toFixed(2);} return d+'Z'; }
 const UJ = `<rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" stroke="#C8102E" stroke-width="2"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/>`;
 const FLAGS = {
-  th:['Thailand', `<rect width="60" height="40" fill="#A51931"/><rect y="6.67" width="60" height="26.66" fill="#F4F5F8"/><rect y="13.33" width="60" height="13.34" fill="#2D2A4A"/>`],
   au:['Australia', `<rect width="60" height="40" fill="#012169"/><g transform="scale(.5 .667)">${UJ}</g><path d="${star(15,30,4.6,7)}" fill="#fff"/><path d="${star(45,32,2.6,7)}" fill="#fff"/><path d="${star(38,19,2.6,7)}" fill="#fff"/><path d="${star(45,9,2.6,7)}" fill="#fff"/><path d="${star(51,17,2.6,7)}" fill="#fff"/><path d="${star(48,22.5,1.3,5)}" fill="#fff"/>`],
   hk:['Hong Kong', `<rect width="60" height="40" fill="#DE2910"/><g transform="translate(30 20) scale(1.25)">${[0,72,144,216,288].map(a=>`<path transform="rotate(${a})" d="M0,0 C-5,-3 -6,-10 -1.5,-13.5 C2,-11 3.5,-6 0,0Z" fill="#fff"/>`).join('')}</g>`],
   gb:['United Kingdom', `<g transform="scale(1 1.333)">${UJ}</g>`],
@@ -683,7 +682,7 @@ const DEFAULT = {
   tpl:'pinstripe', sleeve:'short', c:{...COLORWAYS[0]}, style:0,
   front:{l1:'YOUR TEAM', l2:'', logo:null, place:'center', size:70},
   back:{name:'YOUR NAME', num:'', ul:true, logo:null, size:110, bottom:''},
-  sl:{left:'th', right:'none', tag:''},
+  sl:{left:'none', right:'none', tag:''},
   fit:"Men's", size:'M', qty:1, step:0
 };
 delete DEFAULT.c.n;
@@ -966,17 +965,6 @@ function renderDrops(){
 renderDrops();
 $('#dropGrid').onclick = e => { const d = e.target.closest('.drop-card'); if(!d) return; pickTemplate(d.dataset.t, true); st.step = 1; save(); renderStep(); document.getElementById('design').scrollIntoView({behavior:'smooth'}); };
 
-/* team row */
-function renderTeam(){
-  if(!$('#teamRow')) return;
-  const names = [['MARK SCOTT','7'],['EDIE B.','12'],['KAI','21']];
-  $('#teamRow').innerHTML = names.map(([n,num])=>{
-    const saved = {name:st.back.name, num:st.back.num};
-    st.back.name=n; st.back.num=num; const svg = shirtSVG('back'); st.back.name=saved.name; st.back.num=saved.num;
-    return `<div>${svg}<div class="cap">${n} · #${num}</div></div>`; }).join('');
-  $$('#teamRow svg').forEach(s=>fitTexts(s.parentElement));
-}
-
 /* designer */
 function renderPreview(){
   $('#vFront').innerHTML = shirtSVG('front'); $('#vBack').innerHTML = shirtSVG('back');
@@ -988,7 +976,6 @@ function renderPreview(){
   if(st.back.name.trim()) chips.push(st.back.name.trim().toUpperCase());
   $('#chips').innerHTML = chips.map(x=>`<span class="chip">${esc(x)}</span>`).join('');
   $('#cornerId').textContent = designId();
-  renderTeam();
 }
 function designId(){ const s = JSON.stringify([st.tpl,st.sleeve,st.c,st.style,st.front.l1,st.front.l2,st.back.name,st.back.num,st.sl]); let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return 'KC-'+h.toString(36).toUpperCase().slice(0,6); }
 function renderTemplates(){
@@ -1017,7 +1004,7 @@ function renderSleeves(){
   $('#flagsL').innerHTML = opts('left'); $('#flagsR').innerHTML = opts('right'); $('#sTag').value = st.sl.tag;
 }
 function summaryRows(){
-  const fl = k => k==='none' ? '—' : FLAGS[k][0];
+  const fl = k => (k==='none' || !FLAGS[k]) ? '—' : FLAGS[k][0];
   return [
     ['Design ID', designId()],
     ['Drop', TEMPLATES.find(x=>x.id===st.tpl).name + ' · ' + (st.sleeve==='long'?'Long sleeve':'Short sleeve')],
