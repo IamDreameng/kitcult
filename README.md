@@ -25,6 +25,13 @@ const SHOP = { name:'KITCULT', email:'orders@kitcult.club', instagram:'@kitcult'
 ```
 Replace with your real email / Instagram / LINE.
 
+## Prices
+Search `const PRICE` in `index.html`:
+```js
+const PRICE = { single:59, team:45, teamMin:10, removeLogo:12, premiumFont:5 };
+```
+Free vs premium fonts: `premium:true` in `const STYLES`.
+
 ## Roadmap
 - Orders saved to a database (Supabase) + email notification
 - Online payment (Stripe / Omise / 2C2P)

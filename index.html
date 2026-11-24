@@ -4,29 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KITCULT — Custom Sportswear</title>
-<meta name="description" content="KITCULT — design your own custom rash guard. Pick a drop, set your colors, add your logo, name and flag. Built to sweat, cut for the street.">
-<meta name="theme-color" content="#0a0a0a">
-<meta property="og:title" content="KITCULT — Custom Sportswear">
-<meta property="og:description" content="Design your own custom rash guard: colors, logo, name and flag.">
+<meta name="description" content="KITCULT, the cult for custom kit. Design your own custom rash guard: $59 per shirt, $45 each for teams of 10+. Men's and women's cuts.">
+<meta name="theme-color" content="#f5f3ee">
+<meta property="og:title" content="KITCULT — The cult for custom kit">
+<meta property="og:description" content="Custom rash guards: $59 per shirt, $45 each for teams of 10+.">
 <meta property="og:url" content="https://kitcult.club">
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:ital,wght@1,800&family=Oswald:wght@600;700&family=Permanent+Marker&family=Russo+One&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Montserrat:ital,wght@1,800&family=Oswald:wght@600;700&family=Permanent+Marker&family=Graduate&family=Russo+One&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ===== MOBILE FIRST: base = phone, then min-width breakpoints ===== */
   :root{
-    --bg:#0a0a0a; --bg2:#121212; --bg3:#1a1a1a; --line:#262626; --bone:#efeae0; --mute:#8d8a84;
+    --bg:#f5f3ee; --bg2:#ffffff; --bg3:#ebe8e1; --line:#dcd8cf; --bone:#0b0b0b; --mute:#6d6a63; --text2:#3b3935;
+    --field:#ffffff; --grid:#eeebe4; --sel:#0b0b0b; --acid-t:#4c6b00; --glass:rgba(245,243,238,.92);
     --acid:#d4ff00; --pur:#8a3cff;
     --mono:'Space Mono',ui-monospace,monospace; --disp:Anton,Impact,'Arial Narrow',sans-serif;
     --navh:58px; --pad:16px; --bar:76px;
   }
+  .dark{
+    --bg:#0a0a0a; --bg2:#121212; --bg3:#1a1a1a; --line:#262626; --bone:#efeae0; --mute:#8d8a84; --text2:#c9c4ba;
+    --field:var(--field); --grid:var(--grid); --sel:#d4ff00; --acid-t:#d4ff00; --glass:var(--glass);
+    color:var(--bone); background:var(--bg);
+  }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html{scroll-behavior:smooth;scroll-padding-top:var(--navh)}
   body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--bone);background:var(--bg);overflow-x:hidden;padding-bottom:var(--bar)}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.06;
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.035;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   body.lock{overflow:hidden}
   a{color:inherit}
@@ -35,10 +41,10 @@
   .wrap{max-width:1400px;margin:0 auto;padding:0 var(--pad)}
 
   /* ---------- NAV ---------- */
-  nav.top{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav.top{position:sticky;top:0;z-index:60;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh);gap:16px}
   .brand{font-family:var(--disp);font-size:26px;letter-spacing:.02em;text-decoration:none;display:flex;align-items:baseline;gap:6px}
-  .brand sup{font-family:var(--mono);font-size:10px;color:var(--acid)}
+  .brand sup{font-family:var(--mono);font-size:10px;color:var(--acid-t)}
   .brand small{font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:10px;color:var(--mute);letter-spacing:.1em;display:none}
   .links{display:none}
   .burger{width:46px;height:46px;border:1px solid var(--line);background:none;display:grid;place-items:center;cursor:pointer;padding:0}
@@ -50,20 +56,20 @@
   .menu{position:fixed;inset:var(--navh) 0 0 0;z-index:55;background:var(--bg);padding:24px var(--pad) 40px;display:flex;flex-direction:column;gap:2px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s;overflow-y:auto;overflow-x:hidden}
   body.menu-open .menu{opacity:1;transform:none;pointer-events:auto}
   .menu a{font-family:var(--disp);font-size:clamp(34px,11vw,52px);gap:10px;line-height:1.05;text-transform:uppercase;text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding:10px 0}
-  .menu a small{font-family:var(--mono);font-size:11px;color:var(--acid)}
+  .menu a small{font-family:var(--mono);font-size:11px;color:var(--acid-t)}
   .menu .mfoot{margin-top:auto;padding-top:24px;font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
 
   /* ---------- BUTTONS ---------- */
   .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;background:var(--acid);color:#000;border:0;font-family:var(--mono);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;padding:14px 22px;text-decoration:none;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 70%,92% 100%,0 100%)}
   .cta:active{transform:translateY(1px)}
   .cta.ghost{background:transparent;color:var(--bone);outline:1px solid var(--bone);outline-offset:-1px;clip-path:none}
-  .btn{min-height:46px;border:1px solid var(--line);background:#0f0f0f;color:var(--bone);padding:11px 16px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
-  .btn.pri{background:var(--acid);color:#000;border-color:var(--acid);font-weight:700}
+  .btn{min-height:46px;border:1px solid var(--line);background:var(--field);color:var(--bone);padding:11px 16px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+  .btn.pri{background:var(--acid);color:#000;border-color:var(--acid-t);font-weight:700}
   .tbtn{min-height:42px;background:none;border:1px solid var(--line);color:var(--bone);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:9px 12px;cursor:pointer}
 
   /* ---------- MOBILE BOTTOM BAR ---------- */
   .cta.nav-cta{display:none}
-  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:58;padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:rgba(10,10,10,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;gap:8px;transition:transform .25s}
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:58;padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;gap:8px;transition:transform .25s}
   .mbar.hide{transform:translateY(110%)}
   .mbar .cta{flex:1}
   .mbar .btn{flex:0 0 auto}
@@ -73,30 +79,30 @@
   /* ---------- HERO ---------- */
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
   .stage{position:relative;height:min(64vh,560px);min-height:400px;display:grid;place-items:center;overflow:hidden;
-    background:radial-gradient(ellipse 70% 60% at 50% 55%,#24182f 0,#0a0a0a 70%)}
-  .word{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:var(--disp);font-size:38vw;line-height:.82;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px #2f2f2f;user-select:none;pointer-events:none}
-  .word span:last-child{-webkit-text-stroke-color:var(--acid);opacity:.35}
+    background:radial-gradient(ellipse 70% 60% at 50% 55%,#ffffff 0,var(--bg) 72%)}
+  .word{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:var(--disp);font-size:38vw;line-height:.82;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px #d6d1c6;user-select:none;pointer-events:none}
+  .word span:last-child{-webkit-text-stroke-color:var(--acid-t);opacity:.45}
   .stage .jp{position:absolute;right:10px;top:14px;writing-mode:vertical-rl;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:14px;letter-spacing:.3em;color:var(--mute)}
   .shirt{position:relative;z-index:2;width:min(88vw,520px);cursor:pointer;touch-action:pan-y;animation:float 6s ease-in-out infinite}
-  .shirt svg{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 40px rgba(0,0,0,.75));transition:opacity .35s, transform .35s}
+  .shirt svg{width:100%;height:auto;display:block;filter:drop-shadow(0 26px 30px rgba(0,0,0,.28));transition:opacity .35s, transform .35s}
   .shirt.swap svg{opacity:0;transform:translateX(-24px) rotate(-3deg)}
   @keyframes float{50%{transform:translateY(-10px)}}
   .stage-meta{position:absolute;left:var(--pad);right:var(--pad);bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;z-index:3}
-  .stage-meta b{font-family:var(--disp);font-weight:400;font-size:30px;color:var(--acid);line-height:1}
+  .stage-meta b{font-family:var(--disp);font-weight:400;font-size:30px;color:var(--acid-t);line-height:1}
   .stage-meta .hn{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
   .dim{color:var(--mute);font-size:10px}
   .dots{display:flex;gap:6px}
-  .dots i{width:7px;height:7px;background:#333;display:block;cursor:pointer}
-  .dots i.on{background:var(--acid);width:22px}
+  .dots i{width:7px;height:7px;background:var(--line);display:block;cursor:pointer}
+  .dots i.on{background:var(--bone);width:22px}
   .hero-copy{padding-top:22px}
   .sports{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
   .sports span{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--line);padding:6px 10px;color:var(--mute)}
-  .sports span.on{background:var(--acid);color:#000;border-color:var(--acid);font-weight:700}
+  .sports span.on{background:var(--acid);color:#000;border-color:var(--acid-t);font-weight:700}
   .sports span:not(.on)::after{content:" · soon";opacity:.6}
   h1.big{font-family:var(--disp);font-weight:400;font-size:clamp(48px,13.5vw,150px);line-height:.88;margin:0;text-transform:uppercase}
   h1.big .out{color:transparent;-webkit-text-stroke:1.5px var(--bone)}
-  h1.big .acid{color:var(--acid)}
-  .lede{color:#c9c4ba;font-size:16px;line-height:1.55;margin:16px 0 22px;max-width:460px}
+  h1.big .acid{color:var(--bone);background:linear-gradient(transparent 62%, var(--acid) 62%, var(--acid) 92%, transparent 92%);padding:0 .04em}
+  .lede{color:var(--text2);font-size:16px;line-height:1.55;margin:16px 0 22px;max-width:460px}
   .hero .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .marquee{background:var(--acid);color:#000;overflow:hidden;white-space:nowrap;border-block:1px solid #000;transform:rotate(-1.5deg);margin:30px -20px 18px;position:relative;z-index:3}
   .marquee .track{display:inline-block;padding:11px 0;animation:mq 26s linear infinite;font-family:var(--disp);font-size:22px;text-transform:uppercase}
@@ -107,7 +113,7 @@
   /* ---------- SECTIONS ---------- */
   section.s{padding:56px 0;border-bottom:1px solid var(--line)}
   .shead{margin-bottom:26px}
-  .shead .num{font-family:var(--mono);font-size:11px;color:var(--acid);letter-spacing:.12em;margin-bottom:10px}
+  .shead .num{font-family:var(--mono);font-size:11px;color:var(--acid-t);letter-spacing:.12em;margin-bottom:10px}
   h2.h{font-family:var(--disp);font-weight:400;font-size:clamp(44px,13vw,92px);line-height:.9;margin:0;text-transform:uppercase}
   .shead p{color:var(--mute);margin:14px 0 0;line-height:1.55;font-size:15px;max-width:440px}
 
@@ -121,93 +127,155 @@
   .drop-card{background:var(--bg2);border:1px solid var(--line);padding:14px 14px 16px;cursor:pointer;position:relative}
   .drop-card .dn{font-family:var(--mono);font-size:10px;color:var(--mute);display:flex;justify-content:space-between}
   .drop-card .art{padding:12px 2px 4px;transition:transform .3s}
-  .drop-card svg{width:100%;height:auto;filter:drop-shadow(0 14px 16px rgba(0,0,0,.6))}
+  .drop-card svg{width:100%;height:auto;filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))}
   .drop-card h3{font-family:var(--disp);font-weight:400;font-size:28px;margin:6px 0 4px;text-transform:uppercase}
   .drop-card .foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
   .drop-card .sw{display:flex;gap:4px}
-  .drop-card .sw i{width:14px;height:14px;border:1px solid #333}
-  .drop-card .go{font-family:var(--mono);font-size:11px;color:var(--acid);text-transform:uppercase;letter-spacing:.08em}
+  .drop-card .sw i{width:14px;height:14px;border:1px solid var(--line)}
+  .drop-card .go{font-family:var(--mono);font-size:11px;color:var(--acid-t);text-transform:uppercase;letter-spacing:.08em}
 
   /* ---------- STUDIO ---------- */
   #design{background:var(--bg2);padding-bottom:20px}
   .studio{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg);margin:0 calc(var(--pad) * -1);border-left:0;border-right:0}
   .preview{position:sticky;top:var(--navh);z-index:20;padding:10px 12px 8px;border-bottom:1px solid var(--line);background:
-    linear-gradient(var(--line) 1px,transparent 1px) 0 0/32px 32px, linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/32px 32px, #0d0d0d;}
+    linear-gradient(var(--line) 1px,transparent 1px) 0 0/32px 32px, linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/32px 32px, var(--grid);}
   .preview .corner{position:absolute;font-family:var(--mono);font-size:9px;color:var(--mute);letter-spacing:.12em}
   .vtoggle{display:flex;justify-content:center;margin-bottom:4px}
-  .vtoggle button{min-height:34px;border:1px solid var(--line);background:#0a0a0a;color:var(--mute);font-family:var(--mono);font-size:10px;letter-spacing:.15em;padding:6px 16px;cursor:pointer}
-  .vtoggle button.on{background:var(--bone);color:#000;border-color:var(--bone)}
+  .vtoggle button{min-height:34px;border:1px solid var(--line);background:var(--bg2);color:var(--mute);font-family:var(--mono);font-size:10px;letter-spacing:.15em;padding:6px 16px;cursor:pointer}
+  .vtoggle button.on{background:var(--bone);color:var(--bg);border-color:var(--bone)}
   .views{display:block;max-width:420px;margin:0 auto}
   .view{display:none}
   .view.on{display:block}
-  .view svg{width:100%;height:auto;max-height:27vh;display:block;margin:0 auto;filter:drop-shadow(0 12px 14px rgba(0,0,0,.65))}
+  .view svg{width:100%;height:auto;max-height:27vh;display:block;margin:0 auto;filter:drop-shadow(0 12px 14px rgba(0,0,0,.28))}
   .view .lbl{display:none}
   .pbar{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
   .preview #chips{display:none}
-  .chip{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);padding:5px 8px;color:var(--mute);background:#0a0a0a}
+  .chip{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);padding:5px 8px;color:var(--mute);background:var(--bg2)}
   .ptools{display:none}
   .panel{display:flex;flex-direction:column}
   .steps{display:flex;gap:6px;overflow-x:auto;padding:12px var(--pad);border-bottom:1px solid var(--line);scrollbar-width:none}
   .steps::-webkit-scrollbar{display:none}
-  .steps button{flex:0 0 auto;min-height:40px;border:1px solid var(--line);background:#0f0f0f;padding:8px 13px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);cursor:pointer;white-space:nowrap}
-  .steps button.on{color:#000;background:var(--acid);border-color:var(--acid)}
+  .steps button{flex:0 0 auto;min-height:40px;border:1px solid var(--line);background:var(--field);padding:8px 13px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);cursor:pointer;white-space:nowrap}
+  .steps button.on{color:#000;background:var(--acid);border-color:var(--acid-t)}
   .sec{display:none;padding:18px var(--pad) 10px}
   .sec.on{display:block}
   .sec h4{font-family:var(--disp);font-weight:400;font-size:32px;margin:0 0 2px;text-transform:uppercase}
   .hint{font-size:14px;color:var(--mute);margin:0 0 16px;line-height:1.45}
   .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-  .tcard{border:1px solid var(--line);padding:6px 2px;cursor:pointer;background:#0f0f0f;text-align:center}
-  .tcard.on{border-color:var(--acid);outline:1px solid var(--acid)}
+  .tcard{border:1px solid var(--line);padding:6px 2px;cursor:pointer;background:var(--field);text-align:center}
+  .tcard.on{border-color:var(--acid-t);outline:1px solid var(--acid)}
   .tcard svg{width:100%;height:auto}
   .tcard div{font-family:var(--mono);font-size:8px;text-transform:uppercase;color:var(--mute);margin-top:2px;line-height:1.2}
   label.f{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);margin:0 0 7px;text-transform:uppercase;letter-spacing:.12em}
   .field{margin-bottom:16px}
   .two{display:grid;grid-template-columns:1fr;gap:0}
   .two.keep{grid-template-columns:1fr 1fr;gap:10px}
-  input[type=text],input[type=email],select,textarea{width:100%;min-height:48px;padding:12px;border:1px solid var(--line);border-radius:0;font:500 16px Inter;color:var(--bone);background:#0f0f0f;-webkit-appearance:none}
+  input[type=text],input[type=email],select,textarea{width:100%;min-height:48px;padding:12px;border:1px solid var(--line);border-radius:0;font:500 16px Inter;color:var(--bone);background:var(--field);-webkit-appearance:none}
   textarea{min-height:96px;resize:vertical;font-family:var(--mono);font-size:14px}
-  input:focus,select:focus,textarea:focus{outline:1px solid var(--acid);border-color:var(--acid)}
-  input[type=range]{width:100%;accent-color:var(--acid);height:32px}
+  input:focus,select:focus,textarea:focus{outline:1px solid var(--acid);border-color:var(--acid-t)}
+  input[type=range]{width:100%;accent-color:var(--acid-t);height:32px}
   .colors{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:18px}
-  .cpick{border:1px solid var(--line);padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#0f0f0f;cursor:pointer}
+  .cpick{border:1px solid var(--line);padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--field);cursor:pointer}
   .cpick input{width:40px;height:40px;border:0;padding:0;background:none;cursor:pointer}
   .cpick span{font-family:var(--mono);font-size:8px;text-transform:uppercase;text-align:center;letter-spacing:.03em;line-height:1.2}
   .cpick small{display:none}
   .presets{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-  .preset{cursor:pointer;border:1px solid var(--line);background:#0f0f0f;min-height:56px}
+  .preset{cursor:pointer;border:1px solid var(--line);background:var(--field);min-height:56px}
   .preset .sw{display:flex;height:26px}
   .preset .sw i{flex:1}
   .preset div.n{font-family:var(--mono);font-size:10px;text-transform:uppercase;padding:7px 8px;color:var(--mute)}
   .seg{display:flex;border:1px solid var(--line);flex-wrap:wrap}
-  .seg button{flex:1;min-height:46px;border:0;background:#0f0f0f;padding:10px 10px;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--mute);cursor:pointer}
+  .seg button{flex:1;min-height:46px;border:0;background:var(--field);padding:10px 10px;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--mute);cursor:pointer}
   .seg button+button{border-left:1px solid var(--line)}
   .seg button.on{background:var(--acid);color:#000}
-  .dropz{border:1px dashed #3a3a3a;padding:18px 14px;text-align:center;cursor:pointer;color:var(--mute);font-size:14px;background:#0f0f0f;min-height:84px}
-  .dropz.over{border-color:var(--acid)}
-  .dropz img{max-height:56px;max-width:150px;display:block;margin:0 auto 8px;background:repeating-conic-gradient(#222 0 25%,#151515 0 50%) 0/12px 12px}
+  .dropz{border:1px dashed var(--line);padding:18px 14px;text-align:center;cursor:pointer;color:var(--mute);font-size:14px;background:var(--field);min-height:84px}
+  .dropz.over{border-color:var(--acid-t)}
+  .dropz img{max-height:56px;max-width:150px;display:block;margin:0 auto 8px;background:repeating-conic-gradient(#222 0 25%,var(--bg3) 0 50%) 0/12px 12px}
   .dropz small{font-family:var(--mono);font-size:10px}
   .dropz .rm{display:inline-block;padding:6px}
   .nav2{display:none}
-  .styles{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-  .sty{border:1px solid var(--line);padding:9px 2px;text-align:center;cursor:pointer;background:#0f0f0f;font-size:16px;line-height:1.1;min-height:52px}
+  .styles{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+  .sty{border:1px solid var(--line);padding:9px 2px;text-align:center;cursor:pointer;background:var(--field);font-size:16px;line-height:1.1;min-height:52px}
   .sty small{display:block;font-family:var(--mono);font-size:8px;color:var(--mute);margin-top:4px;text-transform:uppercase}
-  .sty.on{border-color:var(--acid);outline:1px solid var(--acid)}
+  .sty.on{border-color:var(--acid-t);outline:1px solid var(--acid)}
   .check{display:flex;gap:10px;align-items:center;font-size:15px;cursor:pointer;min-height:44px}
-  .check input{accent-color:var(--acid);width:20px;height:20px}
+  .check input{accent-color:var(--acid-t);width:20px;height:20px}
   .sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-  .sizes button{min-height:48px;border:1px solid var(--line);background:#0f0f0f;color:var(--bone);font-family:var(--mono);font-size:13px;cursor:pointer}
-  .sizes button.on{background:var(--acid);color:#000;border-color:var(--acid)}
+  .sizes button{min-height:48px;border:1px solid var(--line);background:var(--field);color:var(--bone);font-family:var(--mono);font-size:13px;cursor:pointer}
+  .sizes button.on{background:var(--acid);color:#000;border-color:var(--acid-t)}
   .qty{display:flex;align-items:stretch;gap:6px}
-  .qty button{width:52px;min-height:48px;border:1px solid var(--line);background:#0f0f0f;color:var(--bone);font-size:20px;cursor:pointer}
+  .qty button{width:52px;min-height:48px;border:1px solid var(--line);background:var(--field);color:var(--bone);font-size:20px;cursor:pointer}
   .qty input{width:80px;text-align:center}
   .flags{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-  .flag{border:1px solid var(--line);padding:5px 4px 4px;cursor:pointer;background:#0f0f0f;text-align:center}
+  .flag{border:1px solid var(--line);padding:5px 4px 4px;cursor:pointer;background:var(--field);text-align:center}
   .flag svg{width:100%;height:auto;display:block}
-  .flag.on{border-color:var(--acid);outline:1px solid var(--acid)}
+  .flag.on{border-color:var(--acid-t);outline:1px solid var(--acid)}
   .flag small{display:block;font-family:var(--mono);font-size:7px;color:var(--mute);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase}
   .flag.none{display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--mute);min-height:46px}
   .sub{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin:16px 0 10px}
   .lockin{width:100%;margin-top:8px}
+  .palette{display:flex;height:12px;width:min(300px,70%);margin:8px auto 0;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+  .palette i{flex:1}
+  .fromp{color:var(--bone);font-weight:700;background:linear-gradient(transparent 55%, var(--acid) 55%)}
+  .hint.small{font-size:12px;margin:8px 0 0}
+  .ownlogo .btn{width:100%;text-align:left;border-style:dashed}
+  .sty{position:relative}
+  .sty.prem::after{content:"+$5";position:absolute;top:3px;right:4px;font:700 8px var(--mono);color:#000;background:var(--acid);padding:1px 3px}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .opts button{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid var(--line);background:var(--field);color:var(--bone);padding:12px;cursor:pointer;min-height:60px}
+  .opts b{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  .opts span{font-size:12px;color:var(--mute)}
+  .opts button.on{border-color:var(--acid-t);outline:1px solid var(--acid)} .opts button.on b{color:var(--acid-t)}
+  .pricebox,.orderprice{border:1px solid var(--line);background:var(--grid);padding:14px;margin:4px 0 14px}
+  .pl > div{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--mute);padding:3px 0}
+  .pl .pu{color:var(--bone);border-top:1px dashed var(--line);margin-top:4px;padding-top:7px}
+  .pt{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px}
+  .pt span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+  .pt b{font-family:var(--disp);font-weight:400;font-size:40px;color:var(--acid-t);line-height:1}
+  .ptip{font-size:12px;color:var(--mute);margin-top:8px;padding:8px 10px;background:var(--bg3);border-left:2px solid var(--mute)}
+  .ptip.ok{border-left-color:var(--acid-t);color:var(--bone)}
+  .shipnote{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin-top:10px}
+  .navprice{display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+  .navprice b{font-family:var(--disp);font-weight:400;font-size:24px;color:var(--acid-t);line-height:1}
+  .mbar .stepinfo .mprice{font-family:var(--disp);font-weight:400;font-size:24px;color:var(--acid-t);line-height:1;margin-top:2px}
+  .formtotal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding:14px 0 12px;margin-top:4px}
+  .formtotal span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--mute)}
+  .formtotal b{font-family:var(--disp);font-weight:400;font-size:34px;color:var(--acid-t)}
+  .formtotal small{flex-basis:100%;font-family:var(--mono);font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+  .pt b,.navprice b,.formtotal b,.mbar .stepinfo .mprice{color:var(--bone)}
+  .dark .pt b,.dark .tp{color:var(--acid)}
+  .tiers{display:grid;grid-template-columns:1fr;gap:12px}
+  .tier{border:1px solid var(--line);background:var(--bg2);padding:22px;display:flex;flex-direction:column}
+  .tier.hot{border-color:var(--acid-t)}
+  .tier .tk{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute)}
+  .tier.hot .tk{color:var(--acid-t)}
+  .tier .tp{font-family:var(--disp);font-size:84px;line-height:1;margin-top:8px}
+  .tier.hot .tp{color:var(--acid-t)}
+  .tier .tu{font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+  .tier ul{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:8px;font-size:15px;color:var(--text2)}
+  .tier li::before{content:"✦ ";color:var(--acid-t)}
+  .tier .btn,.tier .cta{margin-top:auto;text-align:center;text-decoration:none;display:inline-flex;justify-content:center;align-items:center}
+  .modal{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.7);display:none;align-items:flex-end;justify-content:center;padding:0}
+  .modal.on{display:flex}
+  .mbox{position:relative;background:var(--bg2);border:1px solid var(--line);border-top:2px solid var(--acid);width:100%;max-width:520px;padding:24px 20px calc(24px + env(safe-area-inset-bottom))}
+  .mbox h4{font-family:var(--disp);font-weight:400;font-size:34px;margin:6px 0 8px;text-transform:uppercase}
+  .mbox p{color:var(--text2);line-height:1.55;margin:0 0 14px;font-size:15px}
+  .mbox .did{font-family:var(--mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+  .mbox .did b{color:var(--acid-t);font-size:16px;margin-left:8px}
+  .mbox .acts{display:grid;gap:8px}
+  .mclose{position:absolute;top:10px;right:10px;width:44px;height:44px;border:1px solid var(--line);background:none;color:var(--bone);font-size:16px;cursor:pointer}
+  .pathead{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin:4px 0 8px}
+  .pathead span:first-child{color:var(--bone)}
+  .pathead .szb{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--bone);color:var(--bg);display:grid;place-items:center;font-size:11px}
+  .view.pat svg{max-height:27vh;filter:none}
+  .view.pat #vPattern{background:var(--bg2);border:1px solid var(--line);padding:10px}
+  .cutnote{font-size:13px;color:var(--mute);margin:8px 0 0;line-height:1.45;min-height:1.45em}
+  .fabrics{display:grid;grid-template-columns:1fr;gap:6px}
+  .fab{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid var(--line);background:var(--field);color:var(--bone);padding:12px 14px;cursor:pointer;min-height:56px}
+  .fab b{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+  .fab span{font-size:13px;color:var(--mute);line-height:1.4}
+  .fab.on{border-color:var(--acid-t);outline:1px solid var(--acid)}
+  .fab.on b{color:var(--acid-t)}
   .szd{margin:-4px 0 16px} .szd table{margin-top:4px}
 
   /* ---------- HOW ---------- */
@@ -217,7 +285,7 @@
   .how p{color:var(--mute);margin:0;line-height:1.5;font-size:15px}
   .feats{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px}
   .feats div{background:var(--bg);padding:20px}
-  .feats .k{font-family:var(--mono);font-size:11px;color:var(--acid);letter-spacing:.12em}
+  .feats .k{font-family:var(--mono);font-size:11px;color:var(--acid-t);letter-spacing:.12em}
   .feats h4{font-family:var(--disp);font-weight:400;font-size:24px;margin:8px 0 6px;text-transform:uppercase}
   .feats p{color:var(--mute);margin:0;font-size:15px;line-height:1.5}
 
@@ -227,8 +295,8 @@
   table.sz{width:100%;min-width:340px;border-collapse:collapse;font-family:var(--mono);font-size:13px}
   table.sz th,table.sz td{border:1px solid var(--line);padding:12px 10px;text-align:left}
   table.sz th{background:var(--acid);color:#000;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:10px}
-  table.sz td:first-child{font-weight:700;color:var(--acid)}
-  .fitnote{border-left:3px solid var(--acid);padding:2px 0 2px 16px;color:#c9c4ba;line-height:1.6;font-size:15px}
+  table.sz td:first-child{font-weight:700;color:var(--acid-t)}
+  .fitnote{border-left:3px solid var(--acid);padding:2px 0 2px 16px;color:var(--text2);line-height:1.6;font-size:15px}
   .fitnote p{margin:0 0 10px}
   .fitnote b{color:var(--bone)}
 
@@ -239,7 +307,7 @@
   .teams .l p{line-height:1.6;margin:0 0 22px;color:#efe6ff;position:relative;font-size:15px}
   .teams .l .cta{position:relative;width:100%;background:#fff}
   .teams .l .bgjp{position:absolute;right:-10px;bottom:-26px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:120px;color:rgba(255,255,255,.08);line-height:1}
-  .teams .r{display:grid;grid-template-columns:repeat(3,1fr);background:#0d0d0d;align-content:center;padding:18px 8px}
+  .teams .r{display:grid;grid-template-columns:repeat(3,1fr);background:var(--grid);align-content:center;padding:18px 8px}
   .teams .r svg{width:100%;height:auto;filter:drop-shadow(0 10px 12px rgba(0,0,0,.6))}
   .teams .r .cap{font-family:var(--mono);font-size:9px;color:var(--mute);text-align:center;margin-top:4px}
 
@@ -250,15 +318,15 @@
   .summary{margin:0;font-family:var(--mono);font-size:12px;line-height:1.8}
   .summary dt{float:left;width:100px;color:var(--mute);text-transform:uppercase;font-size:9px;padding-top:3px}
   .summary dd{margin:0 0 0 100px;word-break:break-word}
-  details.sumd summary{cursor:pointer;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--acid);padding:10px 0;list-style:none}
+  details.sumd summary{cursor:pointer;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--acid-t);padding:10px 0;list-style:none}
   details.sumd summary::-webkit-details-marker{display:none}
   details.sumd[open] summary .plus{transform:rotate(45deg)}
   details.sumd .plus{display:inline-block;transition:.2s}
-  .mini{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#0d0d0d;padding:8px}
+  .mini{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--grid);padding:8px}
   .mini svg{width:100%;height:auto}
   .done{display:none;border:1px solid var(--acid);padding:18px;margin-top:16px}
   .done.on{display:block}
-  .done h4{font-family:var(--disp);font-weight:400;font-size:30px;margin:0 0 8px;text-transform:uppercase;color:var(--acid)}
+  .done h4{font-family:var(--disp);font-weight:400;font-size:30px;margin:0 0 8px;text-transform:uppercase;color:var(--acid-t)}
   .contact{display:grid;gap:8px;margin:14px 0;font-family:var(--mono);font-size:13px}
   .contact span{color:var(--mute);display:inline-block;width:90px;font-size:11px}
   .done .acts{display:grid;gap:8px}
@@ -279,7 +347,7 @@
   .line small{font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
   .line em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
   .line .st{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);border:1px solid var(--line);align-self:flex-start;padding:4px 8px}
-  .line.live{background:var(--acid);color:#000;border-color:var(--acid)}
+  .line.live{background:var(--acid);color:#000;border-color:var(--acid-t)}
   .line.live b{color:#000;-webkit-text-stroke:0}
   .line.live small,.line.live em{color:#000}
   .line.live .st{color:#000;border-color:#000}
@@ -295,6 +363,11 @@
     .two{grid-template-columns:1fr 1fr;gap:12px}
     .presets{grid-template-columns:repeat(3,1fr)}
     .flags{grid-template-columns:repeat(7,1fr)}
+    .fabrics{grid-template-columns:1fr 1fr}
+    .styles{grid-template-columns:repeat(6,1fr)}
+    .tiers{grid-template-columns:1fr 1fr}
+    .modal{align-items:center;padding:20px}
+    .mbox .acts{display:flex;flex-wrap:wrap}
     .sizes{display:flex;flex-wrap:wrap} .sizes button{min-width:56px}
     .cpick small{display:block;color:var(--mute);font-size:9px;margin-top:2px}
     .cpick span{font-size:9px}
@@ -314,11 +387,11 @@
     .menu{display:none}
     .links{display:flex;gap:26px}
     .links a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
-    .links a:hover{color:var(--acid)}
+    .links a:hover{color:var(--acid-t)}
     .cta.nav-cta{display:inline-flex;min-height:44px;padding:12px 20px}
     .brand{font-size:28px}
-    .cta:hover{background:#fff} .cta.ghost:hover{background:var(--bone);color:#000}
-    .btn:hover,.tbtn:hover{border-color:var(--acid);color:var(--acid)} .btn.pri:hover{color:#000;background:#fff}
+    .cta:hover{background:var(--bone);color:var(--bg)} .cta.ghost:hover{background:var(--bone);color:var(--bg)}
+    .btn:hover,.tbtn:hover{border-color:var(--acid-t);color:var(--acid-t)} .btn.pri:hover{color:var(--bg);background:var(--bone);border-color:var(--bone)}
 
     .stage{height:calc(100vh - var(--navh) - 60px);min-height:560px;max-height:none}
     .word{flex-direction:row;font-size:24vw;gap:2vw}
@@ -353,12 +426,14 @@
     #design{padding-bottom:96px}
     .studio{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(380px,1fr);margin:0;border:1px solid var(--line)}
     .preview{position:sticky;top:calc(var(--navh) + 16px);align-self:start;border-bottom:0;border-right:1px solid var(--line);padding:30px 20px 20px;background:
-      linear-gradient(var(--line) 1px,transparent 1px) 0 0/40px 40px, linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/40px 40px, #0d0d0d;}
+      linear-gradient(var(--line) 1px,transparent 1px) 0 0/40px 40px, linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/40px 40px, var(--grid);}
     .preview .corner{font-size:10px}
     .vtoggle{display:none}
     .views{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:none}
     .view,.view.on{display:block}
     .view svg{max-height:none}
+    .view.pat{grid-column:1 / -1;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+    .view.pat svg{max-height:none}
     .view .lbl{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mute);text-align:center;margin-top:6px}
     .chip{font-size:10px;padding:6px 10px}
     .preview #chips{display:flex}
@@ -366,7 +441,7 @@
     .panel{min-height:660px;border-left:0}
     .steps{gap:0;padding:0}
     .steps button{flex:1;border:0;border-bottom:2px solid transparent;background:none;min-height:50px}
-    .steps button.on{background:none;color:var(--acid);border-bottom-color:var(--acid)}
+    .steps button.on{background:none;color:var(--acid-t);border-bottom-color:var(--acid-t)}
     .sec{padding:22px 22px 8px}
     .tgrid{gap:8px}
     .tcard div{font-size:9px}
@@ -399,22 +474,21 @@
 <body>
 
 <nav class="top"><div class="wrap">
-  <a class="brand" href="#top">KITCULT<sup>®</sup><small>キットカルト</small></a>
+  <a class="brand" href="#top">KITCULT<sup>®</sup></a>
   <div class="links">
-    <a href="#drops">Drops</a><a href="#design">Design</a><a href="#order">Order</a>
+    <a href="#drops">Drops</a><a href="#design">Design</a><a href="#teams">Teams</a><a href="#order">Order</a>
   </div>
   <a class="cta nav-cta" href="#design">Build yours →</a>
   <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i></button>
 </div></nav>
 <div class="menu" id="menu" aria-hidden="true">
-  <a href="#drops">Drops<small>01</small></a><a href="#design">Design<small>02</small></a><a href="#order">Order<small>03</small></a>
+  <a href="#drops">Drops<small>01</small></a><a href="#design">Design<small>02</small></a><a href="#teams">Teams<small>03</small></a><a href="#order">Order<small>04</small></a>
   <div class="mfoot" id="menuFoot"></div>
 </div>
 
 <header class="hero" id="top">
   <div class="stage" id="stage">
     <div class="word" aria-hidden="true"><span>KIT</span><span>CULT</span></div>
-    <div class="jp" aria-hidden="true">キットカルト</div>
     <div class="shirt" id="heroShirt" title="Tap for the next drop"></div>
     <div class="stage-meta">
       <div><span class="mono dim">Drop</span> <b id="heroDrop">01</b><div class="hn" id="heroName">Pinstripe Fade</div></div>
@@ -423,8 +497,8 @@
   </div>
   <div class="wrap hero-copy">
     <div class="sports"><span class="on">● Mat</span><span>Ring</span><span>Run</span><span>Surf</span></div>
-    <h1 class="big">Built to <span class="acid">sweat.</span><br><span class="out">Cut for the street.</span></h1>
-    <p class="lede">Custom kit, designed by you. Your colors, your logo, your name, your flag.</p>
+    <h1 class="big">The cult for<br><span class="acid">custom kit.</span></h1>
+    <p class="lede">Rash guards designed by you: your colors, your name, your flag. Men's and women's cuts. <b class="fromp">$59</b> per shirt, <b class="fromp">$45</b> each for teams of 10+.</p>
     <div class="btns"><a class="cta" href="#design">Design yours →</a><a class="cta ghost" href="#drops">See drops</a></div>
   </div>
   <div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
@@ -435,10 +509,10 @@
 <section class="s" id="drops"><div class="wrap">
   <div class="shead">
     <div><div class="num">[ 01 ] — MAT LINE / THE DROPS</div><h2 class="h">Pick your<br>base.</h2></div>
-    <p>Eight templates on a pro raglan cut. Each one is just a starting point. Every color, every line and every word is yours to change.</p>
+    <p>Twelve templates, in a men's or women's cut. Each one is just a starting point. Every color, every line and every word is yours to change.</p>
   </div>
   <div class="drops swipe" id="dropGrid"></div>
-  <div class="swipe-hint"><span>Swipe →</span><span>8 drops</span></div>
+  <div class="swipe-hint"><span>Swipe →</span><span>12 drops</span></div>
 </div></section>
 
 <!-- DESIGNER -->
@@ -451,11 +525,13 @@
     <div class="preview">
       <span class="corner" style="left:12px;top:8px">KITCULT / STUDIO</span>
       <span class="corner" style="right:12px;top:8px" id="cornerId">KC-000</span>
-      <div class="vtoggle" id="vtoggle"><button data-v="front" class="on">FRONT</button><button data-v="back">BACK</button></div>
+      <div class="vtoggle" id="vtoggle"><button data-v="front" class="on">FRONT</button><button data-v="back">BACK</button><button data-v="pattern">CUT PATTERN</button></div>
       <div class="views">
         <div class="view on" data-v="front"><div id="vFront"></div><div class="lbl">FRONT</div></div>
         <div class="view" data-v="back"><div id="vBack"></div><div class="lbl">BACK</div></div>
+        <div class="view pat" data-v="pattern"><div class="pathead"><span>Print pattern</span><span id="patInfo"></span><b class="szb" id="patSize">M</b></div><div id="vPattern"></div></div>
       </div>
+      <div class="palette" id="palette"></div>
       <div class="pbar" id="chips"></div>
       <div class="pbar ptools">
         <button class="tbtn js-random">⚄ Surprise me</button>
@@ -467,7 +543,7 @@
     <div class="panel">
       <div class="steps" id="steps">
         <button data-s="0" class="on">01 Drop</button><button data-s="1">02 Color</button><button data-s="2">03 Front</button>
-        <button data-s="3">04 Back</button><button data-s="4">05 Sleeves</button><button data-s="5">06 Size</button>
+        <button data-s="3">04 Back</button><button data-s="4">05 Sleeves</button><button data-s="5">06 Fit</button>
       </div>
 
       <div class="sec on" data-sec="0">
@@ -475,6 +551,9 @@
         <div class="tgrid" id="tgrid"></div>
         <div class="field" style="margin-top:18px"><label class="f">Sleeve</label>
           <div class="seg" id="sleeveSeg"><button data-v="short">Short sleeve</button><button data-v="long">Long sleeve</button></div></div>
+        <div class="field"><label class="f">Cut</label>
+          <div class="seg" id="cutSeg"><button data-v="men">Men's</button><button data-v="women">Women's</button><button data-v="kids">Kids</button></div>
+          <p class="cutnote" id="cutNote"></p></div>
       </div>
 
       <div class="sec" data-sec="1">
@@ -484,41 +563,44 @@
       </div>
 
       <div class="sec" data-sec="2">
-        <h4>Front</h4><p class="hint">Gym or team name across the chest, plus your logo.</p>
+        <h4>Front</h4><p class="hint">Your team or gym name across the chest.</p>
         <div class="two">
-          <div class="field"><label class="f">Chest line 1</label><input type="text" id="fL1" maxlength="16" placeholder="TEAM NAME"></div>
-          <div class="field"><label class="f">Chest line 2</label><input type="text" id="fL2" maxlength="18" placeholder="optional"></div>
+          <div class="field"><label class="f">Team name</label><input type="text" id="fL1" maxlength="16" placeholder="TEAM NAME"></div>
+          <div class="field"><label class="f">Second line (optional)</label><input type="text" id="fL2" maxlength="18" placeholder="optional"></div>
         </div>
-        <div class="field"><label class="f">Lettering</label><div class="styles" id="styles"></div></div>
-        <div class="field"><label class="f">Front logo</label><div class="dropz" data-target="front"><div class="dropInner"></div><input type="file" accept="image/*" hidden></div></div>
-        <div id="frontLogoOpts">
-          <div class="field"><label class="f">Logo position</label><div class="seg" id="placeSeg"><button data-v="center">Center</button><button data-v="left">Left chest</button><button data-v="right">Right chest</button></div></div>
-          <div class="field"><label class="f">Logo size</label><input type="range" id="fSize" min="24" max="130"></div>
-        </div>
+        <div class="field"><label class="f">Font · used for team name and your name</label><div class="styles"></div></div>
+        <div class="field ownlogo"><label class="f">Your own logo</label>
+          <button type="button" class="btn js-logo">Want your own logo? Contact us →</button>
+          <p class="hint small">We place custom logos by hand so they print sharp. Message us with your design ID.</p></div>
       </div>
 
       <div class="sec" data-sec="3">
-        <h4>Back</h4><p class="hint">Name with an underline bar, a sponsor logo, a number and a bottom line.</p>
+        <h4>Back</h4><p class="hint">Your name with an underline bar, a number and a bottom line.</p>
         <div class="two keep" style="grid-template-columns:2fr 1fr">
-          <div class="field"><label class="f">Name</label><input type="text" id="bName" maxlength="22" placeholder="YOUR NAME"></div>
+          <div class="field"><label class="f">Your name</label><input type="text" id="bName" maxlength="22" placeholder="YOUR NAME"></div>
           <div class="field"><label class="f">Number</label><input type="text" id="bNum" maxlength="3" placeholder="7" inputmode="numeric"></div>
         </div>
         <div class="field"><label class="check"><input type="checkbox" id="bUl"> Underline bar under name</label></div>
-        <div class="field"><label class="f">Sponsor / back logo</label><div class="dropz" data-target="back"><div class="dropInner"></div><input type="file" accept="image/*" hidden></div></div>
-        <div class="field" id="backSizeF"><label class="f">Back logo size</label><input type="range" id="bSize" min="40" max="170"></div>
+        <div class="field"><label class="f">Font</label><div class="styles"></div></div>
         <div class="field"><label class="f">Bottom line</label><input type="text" id="bBottom" maxlength="24" placeholder="Train hard"></div>
+        <div class="field ownlogo"><label class="f">Sponsor or own logo on the back</label>
+          <button type="button" class="btn js-logo">Want your own logo? Contact us →</button></div>
       </div>
 
       <div class="sec" data-sec="4">
-        <h4>Sleeves</h4><p class="hint">A flag on each sleeve and a nickname tag.</p>
-        <div class="sub">Left sleeve</div><div class="flags" id="flagsL"></div>
-        <div class="sub">Right sleeve</div><div class="flags" id="flagsR"></div>
-        <div class="field" style="margin-top:18px"><label class="f">Sleeve nickname tag</label><input type="text" id="sTag" maxlength="8" placeholder="NICKNAME"></div>
+        <h4>Sleeves</h4><p class="hint">KITCULT logo on the left sleeve, your flag on the right.</p>
+        <div class="sub">Left sleeve</div>
+        <div class="opts" id="logoOpt">
+          <button type="button" data-v="keep"><b>KITCULT logo</b><span>Standard · included</span></button>
+          <button type="button" data-v="remove"><b>Remove logo</b><span id="rmPrice">+$12 · free for team orders</span></button>
+        </div>
+        <div class="sub">Right sleeve flag</div>
+        <div class="flags" id="flagsR"></div>
       </div>
 
       <div class="sec" data-sec="5">
-        <h4>Size &amp; qty</h4><p class="hint">Compression fit: snug on purpose. Between sizes? Size up.</p>
-        <div class="field"><label class="f">Fit</label><div class="seg" id="fitSeg"><button data-v="Men's">Men's</button><button data-v="Women's">Women's</button><button data-v="Kids">Kids</button></div></div>
+        <h4>Fabric &amp; size</h4><p class="hint">Compression fit: snug on purpose. Between sizes? Size up.</p>
+        <div class="field"><label class="f">Fabric</label><div class="fabrics" id="fabrics"></div></div>
         <div class="field"><label class="f">Size</label><div class="sizes" id="sizes"></div></div>
         <details class="sumd szd"><summary><span class="plus">+</span> Size guide</summary><div class="tablewrap"><table class="sz">
       <thead><tr><th>Size</th><th>Chest (cm)</th><th>Chest (in)</th><th>Height (cm)</th></tr></thead>
@@ -533,21 +615,43 @@
       </tbody>
     </table></div></details>
         <div class="field"><label class="f">Quantity</label><div class="qty"><button id="qMinus">−</button><input type="text" id="qty" inputmode="numeric"><button id="qPlus">+</button></div></div>
+        <div class="pricebox" id="priceBox"></div>
         <a class="cta lockin" href="#order">Lock it in → order</a>
       </div>
 
       <div class="pbar mtools" style="padding:4px 16px 18px;justify-content:flex-start">
         <button class="tbtn js-random">⚄ Surprise me</button><button class="tbtn js-dl" hidden>↓ Save image</button><button class="tbtn js-reset">↺ Start over</button>
       </div>
-      <div class="nav2"><button class="btn" id="prevBtn">← Back</button><button class="btn pri" id="nextBtn">Next →</button></div>
+      <div class="nav2"><button class="btn" id="prevBtn">← Back</button><div class="navprice" id="navPrice"></div><button class="btn pri" id="nextBtn">Next →</button></div>
     </div>
   </div>
+</div></section>
+
+<!-- TEAMS -->
+<section class="s" id="teams"><div class="wrap">
+  <div class="shead">
+    <div><div class="num">[ 03 ] — TEAMS</div><h2 class="h">Kit out<br>the gym.</h2></div>
+    <p>One design for the whole team. Everyone gets their own name, number and size.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier">
+      <div class="tk">Single</div><div class="tp">$59</div><div class="tu">per shirt</div>
+      <ul><li>Any drop, any colors</li><li>Your name and team name</li><li>Flag on the right sleeve</li><li>Remove sleeve logo +$12</li></ul>
+      <a class="btn" href="#design">Design yours →</a>
+    </div>
+    <div class="tier hot dark">
+      <div class="tk">Team · 10+ shirts</div><div class="tp">$45</div><div class="tu">each</div>
+      <ul><li>Same design for everyone</li><li>Each person's own name, number and size</li><li>Sleeve logo removal free</li><li>One order, one delivery</li></ul>
+      <button type="button" class="cta" id="teamStart">Start a team order →</button>
+    </div>
+  </div>
+  <p class="shipnote">Premium fonts +$5 per shirt. Shipping calculated by region at checkout.</p>
 </div></section>
 
 <!-- ORDER -->
 <section class="s" id="order"><div class="wrap">
   <div class="shead">
-    <div><div class="num">[ 06 ] — ORDER</div><h2 class="h">Lock it<br>in.</h2></div>
+    <div><div class="num">[ 04 ] — ORDER</div><h2 class="h">Lock it<br>in.</h2></div>
     <p>Send your design and details. We'll check the artwork and get back to you to confirm.</p>
   </div>
   <div class="order">
@@ -563,10 +667,11 @@
       <div class="field"><label class="f">Gym / team</label><input type="text" id="oGym"></div>
       <div class="field"><label class="f">Team roster (optional): name, number, size, one per line</label><textarea id="oRoster" placeholder="ALEX, 7, L&#10;JORDAN, 12, S"></textarea></div>
       <div class="field"><label class="f">Notes</label><textarea id="oNotes" style="min-height:60px" placeholder="Anything we should know"></textarea></div>
+      <div class="formtotal" id="formTotal"></div>
       <button class="cta" type="submit" style="width:100%;justify-content:center">Submit order →</button>
       <div class="done" id="done">
         <h4>Almost there.</h4>
-        <p style="color:#c9c4ba;line-height:1.55;margin:0 0 6px">Your order is ready. <b>Copy it and send it to us</b> on any of these, along with your logo files:</p>
+        <p style="color:var(--text2);line-height:1.55;margin:0 0 6px">Your order is ready. <b>Copy it and send it to us</b> on any of these. Want your own logo? Attach it to that message.</p>
         <div class="contact" id="contactList"></div>
         <div class="acts"><button class="btn pri" type="button" id="copyOrder">Copy order</button><button class="btn js-dl" type="button" hidden>↓ Save design image</button></div>
       </div>
@@ -574,17 +679,29 @@
     <div class="ordbox design">
       <label class="f">Your design</label>
       <div class="mini"><div id="mFront"></div><div id="mBack"></div></div>
+      <div class="orderprice" id="orderPrice"></div>
       <details class="sumd" id="sumd"><summary><span class="plus">+</span> Full design spec</summary><dl class="summary" id="summary"></dl></details>
       <div style="margin-top:12px"><a class="btn" href="#design" style="text-decoration:none;display:inline-flex;align-items:center">← Edit design</a></div>
     </div></div>
   </div>
 </div></section>
 
-<footer><div class="wrap">
+<footer class="dark"><div class="wrap">
   <div class="huge">KITCULT</div>
   <div class="row"><span>© 2026 KITCULT — Custom sportswear</span><span id="footContact"></span><span>Built to sweat ✦ worn on the street</span></div>
 </div></footer>
 
+<div class="modal" id="logoModal" aria-hidden="true">
+  <div class="mbox" role="dialog" aria-label="Own logo">
+    <button class="mclose" id="logoClose" aria-label="Close">✕</button>
+    <div class="num" style="font-family:var(--mono);font-size:11px;color:var(--acid);letter-spacing:.12em">OWN LOGO</div>
+    <h4>Want your own logo?</h4>
+    <p>Send us your logo and your design ID. We'll place it by hand, check it prints sharp, and confirm the price with you.</p>
+    <div class="did">Design ID <b id="logoDid">KC-000</b></div>
+    <div class="contact" id="logoContacts"></div>
+    <div class="acts"><a class="cta" id="logoMail" href="#">Email us →</a><button class="btn" type="button" id="logoCopy">Copy design ID</button></div>
+  </div>
+</div>
 <div class="mbar" id="mbar"></div>
 <div class="toast" id="toast"></div>
 
@@ -599,7 +716,7 @@ const SHOP = {
 
 /* ================= GEOMETRY (from the RR raglan pattern) ================= */
 const CX = 222.07, MX = x => +(2*CX - x).toFixed(2);
-const G = {
+const GM = {
   outline: "M413.79,182.71l-11.34,54.59-11.49-1.04-67.12-6.13h-.07v229.43H120.34v-229.43l-67.12,6.13-11.49,1.04-11.36-54.59,89.97-24.05,55.89-14.95.02-.02,2.66-2.12,6.75-5.34c.33.05.64.11.97.15,16.01,2.44,33.64,2.28,33.64,2.28h3.65s17.63.16,33.64-2.28c.33-.04.64-.09.97-.15l6.75,5.34,2.66,2.12.02.02,55.89,14.95,89.95,24.05Z",
   sleeveR: "M267.95,143.71l-11.64,4.64s21.25,2.79,47.75,56.07c0,0,59.19.43,87.61,31.79l10.78,1.09,11.34-54.59-145.84-39Z",
   sleeveL: "M176.21,143.71l11.64,4.64s-21.25,2.79-47.75,56.07c0,0-59.19.43-87.61,31.79l-10.78,1.09-11.34-54.59,145.84-39Z",
@@ -614,10 +731,65 @@ const G = {
   collar: "M176.23,143.72 L178.91,141.58 L185.66,136.24 C202.6,138.8 220.27,138.67 220.27,138.67 H223.92 C223.92,138.67 241.55,138.8 258.53,136.24 L265.28,141.58 L267.94,143.70 L257.6,148.6 Q222,158.4 186.6,148.6 Z",
   seams: "M256.31,148.35 C277.56,151.14 304.06,204.42 304.06,204.42 C304.06,204.42 363.25,204.85 391.67,236.21 M304.06,204.42 V459 M187.83,148.35 C166.58,151.14 140.08,204.42 140.08,204.42 C140.08,204.42 80.89,204.85 52.47,236.21 M140.08,204.42 V459 M121,448.8 H323.2 M121,453.1 H323.2 M186.6,149.6 Q222,159.4 257.6,149.6"
 };
-const VB_SHORT = "22 128 400 336", VB_LONG = "-8 128 460 336";
+GM.vbS = "22 128 400 336"; GM.vbL = "-8 128 460 336";
+GM.fem = false; GM.flag = [59.25, 196.4, 78.59]; GM.tag = [104, 194, -14]; GM.chestMax = 150; GM.nameMax = 170;
+GM.pipeBody = "M140.08,204.42 V462 M304.06,204.42 V462";
+GM.yoke = [[176.21,143.71],[30.37,182.71]];
+GM.pieces = {
+  body: "M187.83,148.35 C166.58,151.14 140.08,204.42 140.08,204.42 L120.34,230.14 V459.57 H323.76 V230.14 L304.06,204.42 C304.06,204.42 277.56,151.14 256.31,148.35 Q222,158.4 187.83,148.35 Z",
+  bodyBox: [120.34,148.35,323.76,459.57],
+  sleeve: "M176.21,143.71 L30.37,182.71 L41.73,237.31 L53.22,236.27 L120.34,230.14 L140.08,204.42 C140.08,204.42 166.58,151.14 187.83,148.35 Z",
+  sleeveLong: "M176.21,143.71 L30.37,182.71 L-2,338 L31,344 L41.73,237.31 L53.22,236.27 L120.34,230.14 L140.08,204.42 C140.08,204.42 166.58,151.14 187.83,148.35 Z",
+  pts: [[176.21,143.71],[30.37,182.71],[41.73,237.31],[53.22,236.27],[120.34,230.14],[140.08,204.42],[160,170],[187.83,148.35]],
+  ptsLong: [[-2,338],[31,344]],
+  fold: [[176.21,143.71],[30.37,182.71]], cuffPt: [41.73,237.31], extLen: 150,
+};
+GM.pipeSleeve = "M256.31,148.35 C277.56,151.14 304.06,204.42 304.06,204.42 C304.06,204.42 363.25,204.85 391.67,236.21 M187.83,148.35 C166.58,151.14 140.08,204.42 140.08,204.42 C140.08,204.42 80.89,204.85 52.47,236.21";
+/* Women's cut (from the RR female pattern): set-in sleeves, shaped waist, princess side panels */
+const GF = (() => {
+  const m = MX;
+  const sideCurve = (d) => `M${134.14+d},212 C${140.14+d},260 ${152.14+d},300 ${148.14+d},330 C${144.14+d},380 ${132.14+d},420 ${132.14+d},462`;
+  const sideCurveR = (d) => `M${310-d},212 C${304-d},260 ${292-d},300 ${296-d},330 C${300-d},380 ${312-d},420 ${312-d},462`;
+  return {
+    fem: true, sideCurve, sideCurveR,
+    outline: "M186,134 Q222,152 258.14,134 L300,146 L378,186 L360,232 L310,212 C304,260 292,300 296,330 C300,380 312,420 312,458 L132.14,458 C132.14,420 144.14,380 148.14,330 C152.14,300 140.14,260 134.14,212 L84.14,232 L66.14,186 L144.14,146 Z",
+    sleeveR: "M300,146 L378,186 L360,232 L310,212 C302,190 300,168 300,146 Z",
+    sleeveL: "M144.14,146 L66.14,186 L84.14,232 L134.14,212 C142.14,190 144.14,168 144.14,146 Z",
+    sideR: "M310,212 C304,260 292,300 296,330 C300,380 312,420 312,462 L286,462 C284,420 274,380 274,330 C274,292 292,250 310,212 Z",
+    sideL: "M134.14,212 C140.14,260 152.14,300 148.14,330 C144.14,380 132.14,420 132.14,462 L158.14,462 C160.14,420 170.14,380 170.14,330 C170.14,292 152.14,250 134.14,212 Z",
+    cuffR: "378,186 360,232 352.6,229 370.6,182.2",
+    cuffL: "66.14,186 84.14,232 91.54,229 73.54,182.2",
+    extR: "M378,186 L410,330 L384,338 L360,232 Z",
+    extL: "M66.14,186 L34.14,330 L60.14,338 L84.14,232 Z",
+    lcuffR: "410,330 384,338 381.6,326.5 407.4,318.6",
+    lcuffL: "34.14,330 60.14,338 62.54,326.5 36.74,318.6",
+    collar: "M186,134 Q222,152 258.14,134 L263,140.5 Q222,163 181.14,140.5 Z",
+    seams: "M300,146 C300,168 302,190 310,212 M144.14,146 C144.14,168 142.14,190 134.14,212 M286,462 C284,420 274,380 274,330 C274,292 292,250 310,212 M158.14,462 C160.14,420 170.14,380 170.14,330 C170.14,292 152.14,250 134.14,212 M134,448.8 H310 M134,453.1 H310 M182,142 Q222,164.5 262,142",
+    pipeBody: "M286,462 C284,420 274,380 274,330 C274,292 292,250 310,212 M158.14,462 C160.14,420 170.14,380 170.14,330 C170.14,292 152.14,250 134.14,212",
+    yoke: [[144.14,146],[66.14,186]],
+    pieces: {
+      body: "M181.14,140.5 Q222,163 263,140.5 L300,146 C300,168 302,190 310,212 C304,260 292,300 296,330 C300,380 312,420 312,458 L132.14,458 C132.14,420 144.14,380 148.14,330 C152.14,300 140.14,260 134.14,212 C142.14,190 144.14,168 144.14,146 Z",
+      bodyBox: [132.14,140.5,312,458],
+      sleeve: "M144.14,146 L66.14,186 L84.14,232 L134.14,212 C142.14,190 144.14,168 144.14,146 Z",
+      sleeveLong: "M144.14,146 L66.14,186 L34.14,330 L60.14,338 L84.14,232 L134.14,212 C142.14,190 144.14,168 144.14,146 Z",
+      pts: [[144.14,146],[66.14,186],[84.14,232],[134.14,212],[143,180]],
+      ptsLong: [[34.14,330],[60.14,338]],
+      fold: [[144.14,146],[66.14,186]], cuffPt: [84.14,232], extLen: 145,
+    },
+    pipeSleeve: "M300,146 C300,168 302,190 310,212 M144.14,146 C144.14,168 142.14,190 134.14,212",
+    vbS: "52 124 340 342", vbL: "24 124 396 342",
+    flag: [87.5, 202.6, 68.6], tag: [121, 184, -27], chestMax: 128, nameMax: 140,
+  };
+})();
+let G = GM;
+function cutOf(o){ return (o && o.cut) || (typeof st!=='undefined' && st.cut) || 'men'; }
 
 /* ================= DATA ================= */
 const TEMPLATES = [
+  {id:'hourglass', name:'Street Hourglass', cw:12},
+  {id:'tribal',    name:'Chrome Tribal', cw:13},
+  {id:'moto',      name:'Moto Stripe', cw:14},
+  {id:'hourclean', name:'Clean Hourglass', cw:5},
   {id:'pinstripe', name:'Pinstripe Fade', cw:0},
   {id:'mono',      name:'Pro Mono', cw:1},
   {id:'blur',      name:'Blur Chevron', cw:2},
@@ -640,14 +812,18 @@ const COLORWAYS = [
   {n:'Hot Pink',      main:'#1b0a18', sleeve:'#ff4fd8', pattern:'#ff8ae2', trim:'#12050f', text:'#ffffff'},
   {n:'Navy Red',      main:'#0b1c4a', sleeve:'#e11d2a', pattern:'#ffffff', trim:'#081335', text:'#ffffff'},
   {n:'Field Olive',   main:'#23281c', sleeve:'#6b7a4b', pattern:'#a3b57a', trim:'#161a12', text:'#e8eddc'},
+  {n:'Citrus Sage',   main:'#f47b20', sleeve:'#a9bba0', pattern:'#f1f3ef', trim:'#1b1b1b', text:'#1b1b1b'},
+  {n:'Chrome Night',  main:'#15171d', sleeve:'#454b5a', pattern:'#dfe3ea', trim:'#0b0c0f', text:'#ffffff'},
+  {n:'Moto Red',      main:'#f2f1ec', sleeve:'#d7261e', pattern:'#d7261e', trim:'#141414', text:'#141414'},
 ];
 const COLOR_SLOTS = [['main','Body'],['sleeve','Sleeves'],['pattern','Pattern'],['trim','Collar & cuffs'],['text','Text']];
 const STYLES = [
-  {n:'Pro',      chest:{f:"'Bebas Neue'",w:400,ls:5,i:0}, name:{f:"Montserrat",w:800,ls:.5,i:1}, ext:{f:"'Russo One'",w:400,ls:.5,i:0}},
+  {n:'Pro',      chest:{f:"'Bebas Neue'",w:400,ls:5,i:0}, name:{f:"Montserrat",w:800,ls:.5,i:1}, ext:{f:"Montserrat",w:800,ls:.5,i:0}},
   {n:'Street',   chest:{f:"Anton",w:400,ls:1.5,i:0},      name:{f:"Anton",w:400,ls:1,i:1},        ext:{f:"Anton",w:400,ls:1,i:0}},
-  {n:'Tech',     chest:{f:"'Russo One'",w:400,ls:1,i:0},  name:{f:"'Russo One'",w:400,ls:.5,i:1}, ext:{f:"'Russo One'",w:400,ls:.5,i:0}},
   {n:'Athletic', chest:{f:"Oswald",w:700,ls:2.5,i:0},     name:{f:"Oswald",w:700,ls:1,i:1},       ext:{f:"Oswald",w:600,ls:1,i:0}},
-  {n:'Brush',    chest:{f:"'Permanent Marker'",w:400,ls:1,i:0}, name:{f:"'Permanent Marker'",w:400,ls:.5,i:0}, ext:{f:"'Permanent Marker'",w:400,ls:.5,i:0}},
+  {n:'Tech',     premium:true, chest:{f:"'Russo One'",w:400,ls:1,i:0},  name:{f:"'Russo One'",w:400,ls:.5,i:1}, ext:{f:"'Russo One'",w:400,ls:.5,i:0}},
+  {n:'Varsity',  premium:true, chest:{f:"Graduate",w:400,ls:1.5,i:0},   name:{f:"Graduate",w:400,ls:.5,i:0},   ext:{f:"Graduate",w:400,ls:.5,i:0}},
+  {n:'Brush',    premium:true, chest:{f:"'Permanent Marker'",w:400,ls:1,i:0}, name:{f:"'Permanent Marker'",w:400,ls:.5,i:0}, ext:{f:"'Permanent Marker'",w:400,ls:.5,i:0}}
 ];
 const SIZES = ['XS','S','M','L','XL','2XL','3XL'];
 
@@ -682,13 +858,13 @@ const DEFAULT = {
   tpl:'pinstripe', sleeve:'short', c:{...COLORWAYS[0]}, style:0,
   front:{l1:'YOUR TEAM', l2:'', logo:null, place:'center', size:70},
   back:{name:'YOUR NAME', num:'', ul:true, logo:null, size:110, bottom:''},
-  sl:{left:'none', right:'none', tag:''},
-  fit:"Men's", size:'M', qty:1, step:0
+  sl:{flag:'none', noLogo:false},
+  cut:'men', fabric:'pro', size:'M', qty:1, step:0
 };
 delete DEFAULT.c.n;
 let st = load() || structuredClone(DEFAULT);
-function load(){ try{ const j=localStorage.getItem('kitcult-v1'); if(!j) return null; const o=JSON.parse(j); return {...structuredClone(DEFAULT), ...o, c:{...DEFAULT.c,...o.c}, front:{...DEFAULT.front,...o.front}, back:{...DEFAULT.back,...o.back}, sl:{...DEFAULT.sl,...o.sl}}; }catch(e){ return null; } }
-function save(){ try{ localStorage.setItem('kitcult-v1', JSON.stringify(st)); }catch(e){ try{ const s2=structuredClone(st); s2.front.logo=null; s2.back.logo=null; localStorage.setItem('kitcult-v1', JSON.stringify(s2)); }catch(e2){} } }
+function load(){ try{ const j=localStorage.getItem('kitcult-v2'); if(!j) return null; const o=JSON.parse(j); return {...structuredClone(DEFAULT), ...o, c:{...DEFAULT.c,...o.c}, front:{...DEFAULT.front,...o.front}, back:{...DEFAULT.back,...o.back}, sl:{...DEFAULT.sl,...o.sl}}; }catch(e){ return null; } }
+function save(){ try{ localStorage.setItem('kitcult-v2', JSON.stringify(st)); }catch(e){ try{ const s2=structuredClone(st); s2.front.logo=null; s2.back.logo=null; localStorage.setItem('kitcult-v2', JSON.stringify(s2)); }catch(e2){} } }
 
 /* ================= COLOR UTILS ================= */
 function hexRgb(h){ h=h.replace('#',''); if(h.length===3) h=h.split('').map(x=>x+x).join(''); return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16)); }
@@ -709,6 +885,11 @@ function hatchDefs(u, color, y0, y1, op=1, spacing=4.2, angle=40){
 function hatchUse(u, y0){ return `<rect x="-20" y="${y0}" width="480" height="${470-y0}" fill="url(#hp${u})" mask="url(#hm${u})"/>`; }
 
 function sideFan(color, strong=1){
+  if(G.fem){
+    let o = `<path d="${G.sideCurve(0)}${G.sideCurveR(0)}" stroke="${color}" stroke-opacity="${.25*strong}" stroke-width="14" fill="none"/>`;
+    for(let i=0;i<14;i++){ const op=(0.95*Math.pow(1-i/14,1.4)+0.06)*strong; o += `<path d="${G.sideCurve(2.1*i)}${G.sideCurveR(2.1*i)}" stroke="${color}" stroke-opacity="${op.toFixed(2)}" stroke-width=".9" fill="none"/>`; }
+    return o;
+  }
   let o = `<path d="M325.1,232c-30,53-40,128-12,236M119.1,232c30,53,40,128,12,236" stroke="${color}" stroke-opacity="${.25*strong}" stroke-width="14" fill="none"/>`;
   for(let i=0;i<14;i++){
     const op = (0.95*Math.pow(1-i/14,1.4)+0.06)*strong;
@@ -718,6 +899,10 @@ function sideFan(color, strong=1){
 }
 function sideVert(color, u){
   let o = `<linearGradient id="vf${u}" gradientUnits="userSpaceOnUse" x1="0" y1="215" x2="0" y2="300"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="vm${u}" maskUnits="userSpaceOnUse" x="-20" y="100" width="480" height="380"><rect x="-20" y="100" width="480" height="380" fill="url(#vf${u})"/></mask><g mask="url(#vm${u})">`;
+  if(G.fem){
+    for(let i=0;i<22;i++){ const op=Math.pow(1-i/22,1.6); o += `<path d="${G.sideCurve(i*1.6)}${G.sideCurveR(i*1.6)}" fill="none" stroke="${color}" stroke-opacity="${op.toFixed(2)}" stroke-width="${(1.1-i*0.02).toFixed(2)}"/>`; }
+    return o + '</g>';
+  }
   for(let i=0;i<22;i++){
     const op = Math.pow(1-i/22,1.6);
     const x1 = 121 + i*1.75, x2 = MX(x1);
@@ -766,14 +951,61 @@ function flowLines(color){
   }
   return o + '</g>';
 }
+const MIRROR = `translate(${2*CX} 0) scale(-1 1)`;
+const femWrap = (inner) => G.fem ? `<g transform="translate(${CX} 0) scale(.84 1) translate(${-CX} 0)">${inner}</g>` : inner;
+function hourglassSides(fill){
+  const half = `<path d="M-20,196 L142,196 C150,250 184,292 184,336 C184,382 152,420 138,470 L-20,470 Z" fill="${fill}"/>`;
+  return femWrap(half + `<g transform="${MIRROR}">${half}</g>`);
+}
+function hourglassEdge(color, w){
+  const half = `<path d="M142,196 C150,250 184,292 184,336 C184,382 152,420 138,470" fill="none" stroke="${color}" stroke-width="${w}"/>`;
+  return femWrap(half + `<g transform="${MIRROR}">${half}</g>`);
+}
+function yoke(c){
+  const [a0,b0] = G.yoke, dx=b0[0]-a0[0], dy=b0[1]-a0[1], L=Math.hypot(dx,dy), ux=dx/L, uy=dy/L;
+  let nx=-uy, ny=ux; if(ny<0){ nx=-nx; ny=-ny; }
+  const a=[a0[0]-ux*6, a0[1]-uy*6], b=[b0[0]+ux*8, b0[1]+uy*8];
+  const P=(p,o)=>`${(p[0]+nx*o).toFixed(1)},${(p[1]+ny*o).toFixed(1)}`;
+  const band=(o1,o2,col)=>`<polygon points="${P(a,o1)} ${P(b,o1)} ${P(b,o2)} ${P(a,o2)}" fill="${col}"/>`;
+  const s = band(-8,17,c.trim) + band(4,5.8,c.main) + band(8,9.8,c.main) + band(12,13.8,c.main);
+  return s + `<g transform="${MIRROR}">${s}</g>`;
+}
+function grunge(u, color, seed=3){
+  return `<filter id="gr${u}" filterUnits="userSpaceOnUse" x="-20" y="100" width="480" height="380">
+    <feTurbulence type="fractalNoise" baseFrequency="0.011 0.03" numOctaves="4" seed="${seed}"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0"/>
+    <feComponentTransfer result="n"><feFuncA type="table" tableValues="0 0 .85 0 0 .85 0 0 .85 0 0 .85 0"/></feComponentTransfer>
+    <feFlood flood-color="${color}"/><feComposite operator="in" in2="n"/>
+  </filter>`;
+}
+function grungeUse(u, color){
+  // flood colors the noise-derived alpha
+  return `<g filter="url(#gr${u})"><rect x="-20" y="100" width="480" height="380" fill="#000"/></g>`;
+}
+const SPIKE = "M216,452 C210,404 198,356 178,312 C170,294 164,272 166,246 C178,272 190,296 196,316 C198,298 196,280 190,262 C204,284 210,308 208,334 C214,318 216,302 212,286 C224,312 224,350 220,390 C219,412 219,432 220,452 Z";
+function tribal(color){
+  const half = `<path d="${SPIKE}" fill="${color}"/>`;
+  return femWrap(half + `<g transform="${MIRROR}">${half}</g>`);
+}
+function sleeveSpikes(color){
+  const [a,b] = G.yoke; const cx = a[0]*.42 + b[0]*.58, cy = a[1]*.42 + b[1]*.58 + (G.fem?22:30);
+  const one = `<path d="${SPIKE}" fill="${color}" transform="translate(${cx.toFixed(1)} ${cy.toFixed(1)}) rotate(${G.fem?-115:-105}) scale(.36) translate(-216 -452)"/>`;
+  return one + `<g transform="${MIRROR}">${one}</g>`;
+}
+function checker(color, y, size=6, rows=2){
+  let o = `<g fill="${color}">`;
+  for(let r=0;r<rows;r++) for(let x=-20,i=0;x<460;x+=size,i++) if((i+r)%2===0) o += `<rect x="${x}" y="${y+r*size}" width="${size}" height="${size}"/>`;
+  return o + '</g>';
+}
 function shards(c){
-  return `
+  const w = G.fem ? `<g transform="translate(${CX} 0) scale(.84 1) translate(${-CX} 0)">` : '<g>';
+  return w + `
    <polygon points="120,250 205,300 150,470 120,470" fill="${c.sleeve}" opacity=".9"/>
    <polygon points="120,300 185,345 160,470 120,470" fill="${c.pattern}" opacity=".55"/>
    <polygon points="324,220 250,280 300,470 324,470" fill="${c.sleeve}" opacity=".9"/>
    <polygon points="324,330 268,370 290,470 324,470" fill="${c.pattern}" opacity=".55"/>
    <polygon points="160,470 230,400 270,470" fill="${shade(c.sleeve,-0.35)}" opacity=".9"/>
-   <g stroke="${c.pattern}" stroke-width="1.2" fill="none" opacity=".9"><path d="M120,250 L205,300 L150,470"/><path d="M324,220 L250,280 L300,470"/><path d="M160,470 L230,400 L270,470"/></g>`;
+   <g stroke="${c.pattern}" stroke-width="1.2" fill="none" opacity=".9"><path d="M120,250 L205,300 L150,470"/><path d="M324,220 L250,280 L300,470"/><path d="M160,470 L230,400 L270,470"/></g></g>`;
 }
 
 /* ================= TEMPLATE RENDER ================= */
@@ -811,7 +1043,7 @@ function shirtParts(tpl, c, u, long){
     case 'shards': return {
       defs: '',
       body: base + shards(c),
-      sleeves: sl(c.sleeve) + `<path d="M30.37,182.71 L120,160 L60,232Z M413.79,182.71 L324,160 L384,232Z" fill="${c.pattern}" opacity=".35"/>`
+      sleeves: sl(c.sleeve) + (G.fem ? '' : `<path d="M30.37,182.71 L120,160 L60,232Z M413.79,182.71 L324,160 L384,232Z" fill="${c.pattern}" opacity=".35"/>`)
     };
     case 'flow': return {
       defs: sleeveFill(u,c,'grad'),
@@ -825,16 +1057,40 @@ function shirtParts(tpl, c, u, long){
             `<polygon points="-20,420 460,215 460,207 -20,412" fill="${c.pattern}"/>`,
       sleeves: sl(c.sleeve)
     };
+    case 'hourglass': return {
+      defs: grunge(u, shade(c.main,-0.22), 5),
+      body: base + `<g filter="url(#gr${u})"><rect x="-20" y="100" width="480" height="380"/></g>` + hourglassSides(c.sleeve) + hourglassEdge(c.trim, 2.2),
+      sleeves: sl(c.sleeve) + yoke(c)
+    };
+    case 'tribal': return {
+      defs: grunge(u, shade(c.main,-0.3), 11),
+      body: base + `<g filter="url(#gr${u})"><rect x="-20" y="100" width="480" height="380"/></g>` + hourglassSides(c.sleeve) + tribal(c.pattern),
+      sleeves: sl(c.sleeve) + yoke(c) + sleeveSpikes(c.pattern)
+    };
+    case 'hourclean': return {
+      defs: '',
+      body: base + hourglassSides(c.sleeve) + hourglassEdge(c.pattern, 5),
+      sleeves: sl(c.sleeve) + yoke(c)
+    };
+    case 'moto': return {
+      defs: '',
+      body: base + checker(c.trim, 262, 6, 2) + femWrap(`<path d="M146,196 V470 M298,196 V470" stroke="${c.sleeve}" stroke-width="7"/><path d="M155,196 V470 M289,196 V470" stroke="${c.trim}" stroke-width="2.5"/>`),
+      sleeves: sl(c.sleeve) + yoke(c)
+    };
     case 'clean': default: return {
       defs: '',
-      body: base + `<path d="M140.08,204.42 V462 M304.06,204.42 V462" stroke="${c.pattern}" stroke-width="5"/>`,
-      sleeves: sl(c.sleeve) + `<path d="M256.31,148.35 C277.56,151.14 304.06,204.42 304.06,204.42 C304.06,204.42 363.25,204.85 391.67,236.21 M187.83,148.35 C166.58,151.14 140.08,204.42 140.08,204.42 C140.08,204.42 80.89,204.85 52.47,236.21" stroke="${c.pattern}" stroke-width="4" fill="none"/>`
+      body: base + `<path d="${G.pipeBody}" stroke="${c.pattern}" stroke-width="5" fill="none"/>`,
+      sleeves: sl(c.sleeve) + `<path d="${G.pipeSleeve}" stroke="${c.pattern}" stroke-width="4" fill="none"/>`
     };
   }
 }
 
 let UID=0;
 function shirtSVG(view, opts={}){
+  const prevG = G; G = cutOf(opts)==='women' ? GF : GM;
+  try { return shirtSVGInner(view, opts); } finally { G = prevG; }
+}
+function shirtSVGInner(view, opts){
   const u = 'u'+(UID++);
   const tpl = opts.tpl || st.tpl, c = opts.c || st.c, long = (opts.sleeve||st.sleeve)==='long', full = !opts.thumb;
   const P = shirtParts(tpl, c, u, long);
@@ -844,7 +1100,7 @@ function shirtSVG(view, opts={}){
   const cuffs = long ? `<polygon points="${G.lcuffL}" fill="${c.trim}"/><polygon points="${G.lcuffR}" fill="${c.trim}"/>`
                      : `<polygon points="${G.cuffL}" fill="${c.trim}"/><polygon points="${G.cuffR}" fill="${c.trim}"/>`;
   const deco = (full && !opts.nodeco) ? (view==='front' ? frontDeco(c, long) : backDeco(c)) : '';
-  return `<svg viewBox="${long?VB_LONG:VB_SHORT}" xmlns="http://www.w3.org/2000/svg" data-view="${view}">
+  return `<svg viewBox="${long?G.vbL:G.vbS}" xmlns="http://www.w3.org/2000/svg" data-view="${view}">
   <defs>${clip}${P.defs}
     <linearGradient id="sh${u}" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient>
   </defs>
@@ -862,12 +1118,88 @@ function shirtSVG(view, opts={}){
   </svg>`;
 }
 
+/* ================= FLAT CUT PATTERN ================= */
+function shirtContent(view, u){
+  const c = st.c, long = st.sleeve==='long';
+  const P = shirtParts(st.tpl, c, u, long);
+  const cuffs = long ? `<polygon points="${G.lcuffL}" fill="${c.trim}"/><polygon points="${G.lcuffR}" fill="${c.trim}"/>`
+                     : `<polygon points="${G.cuffL}" fill="${c.trim}"/><polygon points="${G.cuffR}" fill="${c.trim}"/>`;
+  const deco = view==='front' ? frontDeco(c, long) : backDeco(c);
+  return { defs: P.defs, content: P.body + P.sleeves + cuffs + `<path d="${G.collar}" fill="${c.trim}"/>` + deco };
+}
+function patternSVG(opts={}){
+  const prevG = G; G = cutOf(opts)==='women' ? GF : GM;
+  try { return patternInner(); } finally { G = prevG; }
+}
+function patternInner(){
+  const u = 'p'+(UID++), long = st.sleeve==='long', PC = G.pieces, c = st.c;
+  const F = shirtContent('front', u+'f'), B = shirtContent('back', u+'b');
+  const sleeveD = PC.sleeve;
+  const [a,b] = PC.fold; const dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy), ux=dx/L, uy=dy/L;
+  const ra=ux*ux-uy*uy, rb=2*ux*uy, rd=uy*uy-ux*ux;
+  const re = a[0]-(ra*a[0]+rb*a[1]), rf = a[1]-(rb*a[0]+rd*a[1]);
+  const refl = p => [ra*p[0]+rb*p[1]+re, rb*p[0]+rd*p[1]+rf];
+  const rotDeg = 90 - Math.atan2(dy,dx)*180/Math.PI, rr = rotDeg*Math.PI/180;
+  const rot = p => { const x=p[0]-a[0], y=p[1]-a[1]; return [a[0]+x*Math.cos(rr)-y*Math.sin(rr), a[1]+x*Math.sin(rr)+y*Math.cos(rr)]; };
+  const spts = PC.pts;
+  let all = spts.concat(spts.map(refl)).map(rot);
+  let ext = '';
+  if(long){
+    const p1 = rot(PC.cuffPt), p2 = rot(refl(PC.cuffPt)), bR = rot(b);
+    const w = Math.abs(p1[0]-p2[0]), cxm = bR[0], y0 = Math.max(p1[1],p2[1]), yb = y0 + PC.extLen, bw = w*0.6;
+    const L = [Math.min(p1[0],p2[0]), Math.max(p1[0],p2[0])];
+    const poly = `${p1[0]},${p1[1]} ${bR[0]},${bR[1]} ${p2[0]},${p2[1]} ${(cxm+bw/2).toFixed(1)},${yb.toFixed(1)} ${(cxm-bw/2).toFixed(1)},${yb.toFixed(1)}`;
+    const p1s = p1[0]<p2[0] ? p1 : p2, p2s = p1[0]<p2[0] ? p2 : p1;
+    const poly2 = `${p1s[0]},${p1s[1]} ${bR[0]},${bR[1]} ${p2s[0]},${p2s[1]} ${(cxm+bw/2).toFixed(1)},${yb.toFixed(1)} ${(cxm-bw/2).toFixed(1)},${yb.toFixed(1)}`;
+    ext = `<polygon points="${poly2}" fill="${c.sleeve}" stroke="#000" stroke-opacity=".7"/>
+      <polygon points="${(cxm-bw/2).toFixed(1)},${(yb-9).toFixed(1)} ${(cxm+bw/2).toFixed(1)},${(yb-9).toFixed(1)} ${(cxm+bw/2).toFixed(1)},${yb.toFixed(1)} ${(cxm-bw/2).toFixed(1)},${yb.toFixed(1)}" fill="${c.trim}"/>
+      <path d="M${bR[0]},${bR[1]} L${cxm},${yb}" stroke="#000" stroke-opacity=".25" stroke-dasharray="3 3" stroke-width=".8"/>`;
+    all = all.concat([[cxm-bw/2, yb],[cxm+bw/2, yb]]);
+  }
+  const sb = [Math.min(...all.map(p=>p[0])), Math.min(...all.map(p=>p[1])), Math.max(...all.map(p=>p[0])), Math.max(...all.map(p=>p[1]))];
+  const bb = PC.bodyBox, GAP = 18, top = 0;
+  const M = `matrix(${ra.toFixed(5)} ${rb.toFixed(5)} ${rb.toFixed(5)} ${rd.toFixed(5)} ${re.toFixed(3)} ${rf.toFixed(3)})`;
+  const stroke = `fill="none" stroke="#000" stroke-opacity=".7" stroke-width="1"`;
+  const sleevePiece = (mir) => { const m = mir ? ` transform="${MIRROR}"` : '';
+    return `<g transform="rotate(${rotDeg.toFixed(3)} ${a[0]} ${a[1]})">
+      <g clip-path="url(#sc${u})"><use href="#cF${u}"${m}/></g>
+      <g transform="${M}"><g clip-path="url(#sc${u})"><use href="#cB${u}"${m}/></g></g>
+      <path d="${sleeveD}" ${stroke}/><path d="${sleeveD}" ${stroke} transform="${M}"/>
+      <path d="M${a[0]},${a[1]} L${b[0]},${b[1]}" stroke="#000" stroke-opacity=".25" stroke-dasharray="3 3" stroke-width=".8"/>
+    </g>${ext}`; };
+  const bw = bb[2]-bb[0], bh = bb[3]-bb[1], sw = sb[2]-sb[0], sh = sb[3]-sb[1];
+  let x = 0; const parts = [], labels = [];
+  const place = (inner, box, label, flip) => {
+    const w = box[2]-box[0], h = box[3]-box[1];
+    const t = flip ? `translate(${x + w} ${top}) scale(-1 1) translate(${-box[0]} ${-box[1]})` : `translate(${x} ${top}) translate(${-box[0]} ${-box[1]})`;
+    parts.push(`<g transform="${t}">${inner}</g>`);
+    labels.push(`<text x="${x + w/2}" y="${top + Math.max(bh,sh) + 16}" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" letter-spacing="1.5" fill="#8d8a84">${label}</text>`);
+    x += w + GAP;
+  };
+  place(`<use href="#cF${u}" clip-path="url(#bc${u})"/><path d="${PC.body}" ${stroke}/>`, bb, 'FRONT');
+  place(`<use href="#cB${u}" clip-path="url(#bc${u})"/><path d="${PC.body}" ${stroke}/>`, bb, 'BACK');
+  place(sleevePiece(false), sb, 'RIGHT SLEEVE');
+  place(sleevePiece(true), sb, 'LEFT SLEEVE', true);
+  const W = x - GAP, H = Math.max(bh, sh);
+  const cw = Math.min(W*0.42, 190), cy = H + 30;
+  parts.push(`<rect x="0" y="${cy}" width="${cw}" height="12" fill="${c.trim}" stroke="#000" stroke-opacity=".7"/>`);
+  labels.push(`<text x="${cw + 10}" y="${cy + 9}" font-family="Space Mono, monospace" font-size="9" letter-spacing="1.5" fill="#8d8a84">COLLAR</text>`);
+  return `<svg viewBox="-6 -6 ${W+12} ${cy+24}" xmlns="http://www.w3.org/2000/svg" data-view="pattern">
+    <defs>${F.defs}${B.defs}
+      <g id="cF${u}">${F.content}</g><g id="cB${u}">${B.content}</g>
+      <clipPath id="bc${u}"><path d="${PC.body}"/></clipPath>
+      <clipPath id="sc${u}"><path d="${sleeveD}"/></clipPath>
+    </defs>
+    ${parts.join('')}${labels.join('')}
+  </svg>`;
+}
+
 /* ================= DECORATIONS ================= */
 function tAttr(s){ return `font-family="${s.f.replace(/"/g,'')}, Impact, 'Arial Narrow', sans-serif" font-weight="${s.w}" ${s.i?'font-style="italic"':''} letter-spacing="${s.ls}"`; }
 function frontDeco(c, long){
   const S = STYLES[st.style], F = st.front; let o='';
   let y = 205;
-  if(F.logo){
+  if(false){
     if(F.place==='center'){
       const sz = F.size;
       o += `<image href="${F.logo}" x="${CX-sz/2}" y="${170}" width="${sz}" height="${sz}" preserveAspectRatio="xMidYMid meet"/>`;
@@ -879,18 +1211,17 @@ function frontDeco(c, long){
     }
   }
   const l1 = F.l1.trim(), l2 = F.l2.trim();
-  if(l1){ y += 26; o += `<text x="${CX}" y="${y}" text-anchor="middle" font-size="33" ${tAttr(S.chest)} fill="${c.text}" data-max="150">${esc(l1.toUpperCase())}</text>`; }
-  if(l2){ y += l1 ? 30 : 26; o += `<text x="${CX}" y="${y}" text-anchor="middle" font-size="26" ${tAttr(S.chest)} fill="${c.text}" data-max="150">${esc(l2.toUpperCase())}</text>`; }
+  if(l1){ y += 26; o += `<text x="${CX}" y="${y}" text-anchor="middle" font-size="33" ${tAttr(S.chest)} fill="${c.text}" data-max="${G.chestMax}">${esc(l1.toUpperCase())}</text>`; }
+  if(l2){ y += l1 ? 30 : 26; o += `<text x="${CX}" y="${y}" text-anchor="middle" font-size="26" ${tAttr(S.chest)} fill="${c.text}" data-max="${G.chestMax}">${esc(l2.toUpperCase())}</text>`; }
   // flags — along the cuff edge, like the RR mockups
   const flagAt = (code, cx, cy, rot) => {
     if(!code || code==='none' || !FLAGS[code]) return '';
     return `<g transform="translate(${cx} ${cy}) rotate(${rot}) translate(-17.7 -11.85)"><rect width="35.4" height="23.7" fill="#000" opacity=".25" transform="translate(.6 .6)"/><svg width="35.4" height="23.7" viewBox="0 0 60 40" preserveAspectRatio="none">${FLAGS[code][1]}</svg></g>`;
   };
-  // viewer-left sleeve on front = wearer's right sleeve
-  o += flagAt(st.sl.left, 59.25, 196.4, 78.59);
-  o += flagAt(st.sl.right, MX(59.25), 196.4, -78.59);
-  if(st.sl.tag.trim()){
-    o += `<g transform="translate(104 194) rotate(-14)"><rect x="-19" y="-7" width="38" height="14" fill="${c.text}"/><text x="0" y="4.2" text-anchor="middle" font-size="11" ${tAttr(S.name)} fill="${c.main}" data-max="33">${esc(st.sl.tag.trim().toUpperCase())}</text></g>`;
+  // front view: viewer-left = wearer's RIGHT sleeve (flag), viewer-right = wearer's LEFT sleeve (KITCULT logo)
+  o += flagAt(st.sl.flag, G.flag[0], G.flag[1], G.flag[2]);
+  if(!st.sl.noLogo){
+    o += `<g transform="translate(${MX(G.flag[0])} ${G.flag[1]}) rotate(${-G.flag[2]})"><text x="0" y="4" text-anchor="middle" font-family="Anton, Impact, 'Arial Narrow', sans-serif" font-size="12.5" letter-spacing="1.2" fill="${c.text}">KITCULT</text></g>`;
   }
   return o;
 }
@@ -898,11 +1229,11 @@ function backDeco(c){
   const S = STYLES[st.style], B = st.back; let o=''; let y = 200;
   if(B.name.trim()){
     y += 22;
-    o += `<text id="nm" x="${CX}" y="${y}" text-anchor="middle" font-size="17" ${tAttr(S.name)} fill="${c.text}" data-max="170">${esc(B.name.trim().toUpperCase())}</text>`;
+    o += `<text id="nm" x="${CX}" y="${y}" text-anchor="middle" font-size="17" ${tAttr(S.name)} fill="${c.text}" data-max="${G.nameMax}">${esc(B.name.trim().toUpperCase())}</text>`;
     if(B.ul) o += `<polygon data-ul="1" points="${CX-73.6},${y+6} ${CX+73.6},${y+6} ${CX+72.4},${y+9.1} ${CX-74.8},${y+9.1}" fill="${lum(c.main)<.5 && lum(c.pattern)>.25 ? c.pattern : c.text}"/>`;
     y += 14;
   }
-  if(B.logo){
+  if(false){
     const w = B.size, h = w*0.62;
     o += `<image href="${B.logo}" x="${CX-w/2}" y="${y+4}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet"/>`;
     y += h + 8;
@@ -929,6 +1260,54 @@ function fitTexts(root){
 
 
 
+/* ===== Prices (USD): edit here ===== */
+const PRICE = { single:59, team:45, teamMin:10, removeLogo:12, premiumFont:5 };
+const money = n => '$' + Number(n).toLocaleString('en-US');
+function priceCalc(){
+  const q = Math.max(1, st.qty|0), team = q >= PRICE.teamMin;
+  const base = team ? PRICE.team : PRICE.single;
+  const logo = st.sl.noLogo ? (team ? 0 : PRICE.removeLogo) : 0;
+  const font = STYLES[st.style] && STYLES[st.style].premium ? PRICE.premiumFont : 0;
+  const unit = base + logo + font;
+  return { q, team, base, logo, font, unit, total: unit * q };
+}
+function priceLines(p){
+  const rows = [[p.team ? `Team price (${PRICE.teamMin}+)` : 'Custom shirt', money(p.base)]];
+  if(st.sl.noLogo) rows.push(['Remove sleeve logo', p.logo ? '+' + money(p.logo) : 'Free']);
+  if(p.font) rows.push(['Premium font', '+' + money(p.font)]);
+  return rows;
+}
+function renderPrice(){
+  const p = priceCalc(), lines = priceLines(p);
+  const tip = p.team ? `<div class="ptip ok">Team pricing applied: ${money(PRICE.team)} each.</div>`
+    : `<div class="ptip">Order ${PRICE.teamMin}+ for the team price: ${money(PRICE.team)} each${st.sl.noLogo ? ' and free logo removal' : ''}.</div>`;
+  const box = `<div class="pl">${lines.map(([k,v])=>`<div><span>${k}</span><span>${v}</span></div>`).join('')}
+      <div class="pu"><span>Per shirt</span><span>${money(p.unit)}</span></div></div>
+    <div class="pt"><span>Total · ${p.q} shirt${p.q>1?'s':''}</span><b>${money(p.total)}</b></div>${tip}
+    <div class="shipnote">Shipping calculated by region at checkout.</div>`;
+  $('#priceBox').innerHTML = box; $('#orderPrice').innerHTML = box;
+  $('#navPrice').innerHTML = `<span>${p.q} × ${money(p.unit)}</span><b>${money(p.total)}</b>`;
+  $('#formTotal').innerHTML = `<span>Total</span><b>${money(p.total)} USD</b><small>+ shipping, calculated by region at checkout</small>`;
+}
+
+/* ===== Cuts & fabrics: edit names/descriptions to match what you actually offer ===== */
+const CUTS = {
+  men:   {n:"Men's cut",   note:"Raglan sleeves, straight athletic body."},
+  women: {n:"Women's cut", note:"Shaped waist, set-in sleeves and curved side panels. Fits the female body better."},
+  kids:  {n:"Kids cut",    note:"Same pro raglan cut, sized for kids."},
+};
+const FABRICS = [
+  {id:'pro',   n:'Pro Compression', d:'Our standard. 4-way stretch that holds its shape roll after roll.'},
+  {id:'lite',  n:'Lite Cool',       d:'Lighter and more breathable. Good for hot gyms and the beach.'},
+  {id:'eco',   n:'Eco Recycled',    d:'Made with recycled polyester. Same stretch, smaller footprint.'},
+  {id:'tough', n:'Heavy Duty',      d:'Thicker knit that stands up to hard training.'},
+];
+const KID_SIZES = ['K4','K6','K8','K10','K12','K14'];
+function sizesFor(){ return st.cut==='kids' ? KID_SIZES : SIZES; }
+function fabricOf(){ return FABRICS.find(f=>f.id===st.fabric) || FABRICS[0]; }
+if(!CUTS[st.cut]) st.cut='men';
+if(!FABRICS.some(f=>f.id===st.fabric)) st.fabric='pro';
+
 /* ================= SITE UI ================= */
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const cwOf = i => { const c={...COLORWAYS[i]}; delete c.n; return c; };
@@ -941,8 +1320,9 @@ let heroI = 0, heroTimer = null;
 $('#heroDots').innerHTML = TEMPLATES.map((_,i)=>`<i data-i="${i}"></i>`).join('');
 function renderHero(){
   const n = TEMPLATES.length, i = ((heroI % n) + n) % n, t = TEMPLATES[i], c = cwOf(t.cw);
-  $('#heroShirt').innerHTML = shirtSVG('front',{tpl:t.id, c, nodeco:true, sleeve:'short'});
-  $('#heroDrop').textContent = String(i+1).padStart(2,'0'); $('#heroName').textContent = t.name;
+  const cut = (((heroI % (n*2)) + n*2) % (n*2)) % 2 ? 'women' : 'men';
+  $('#heroShirt').innerHTML = shirtSVG('front',{tpl:t.id, c, nodeco:true, sleeve:'short', cut});
+  $('#heroDrop').textContent = String(i+1).padStart(2,'0'); $('#heroName').textContent = t.name + ' · ' + (cut==='women' ? "Women's" : "Men's");
   $$('#heroDots i').forEach((d,k)=>d.classList.toggle('on', k===i));
 }
 function heroGo(d){ const el=$('#heroShirt'); el.classList.add('swap'); setTimeout(()=>{ heroI = (typeof d==='number'&&d>=100) ? d-100 : heroI+d; renderHero(); el.classList.remove('swap'); }, 220); }
@@ -968,40 +1348,39 @@ $('#dropGrid').onclick = e => { const d = e.target.closest('.drop-card'); if(!d)
 /* designer */
 function renderPreview(){
   $('#vFront').innerHTML = shirtSVG('front'); $('#vBack').innerHTML = shirtSVG('back');
-  fitTexts($('#vFront')); fitTexts($('#vBack'));
+  $('#vPattern').innerHTML = patternSVG();
+  fitTexts($('#vFront')); fitTexts($('#vBack')); fitTexts($('#vPattern'));
+  $('#patSize').textContent = st.size; $('#patInfo').textContent = CUTS[st.cut].n + ' · ' + (st.sleeve==='long'?'Long sleeve':'Short sleeve');
   $('#mFront').innerHTML = $('#vFront').innerHTML; $('#mBack').innerHTML = $('#vBack').innerHTML;
   const t = TEMPLATES.find(x=>x.id===st.tpl);
-  const chips = ['Drop '+String(TEMPLATES.indexOf(t)+1).padStart(2,'0')+' · '+t.name, st.sleeve==='long'?'Long sleeve':'Short sleeve'];
-  if(st.front.logo||st.back.logo) chips.push('Logo ✓');
+  const chips = ['Drop '+String(TEMPLATES.indexOf(t)+1).padStart(2,'0')+' · '+t.name, CUTS[st.cut].n, st.sleeve==='long'?'Long sleeve':'Short sleeve'];
   if(st.back.name.trim()) chips.push(st.back.name.trim().toUpperCase());
   $('#chips').innerHTML = chips.map(x=>`<span class="chip">${esc(x)}</span>`).join('');
   $('#cornerId').textContent = designId();
+  $('#palette').innerHTML = ['main','sleeve','pattern','trim','text'].map(k=>`<i style="background:${st.c[k]}" title="${k}"></i>`).join('');
 }
 function designId(){ const s = JSON.stringify([st.tpl,st.sleeve,st.c,st.style,st.front.l1,st.front.l2,st.back.name,st.back.num,st.sl]); let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return 'KC-'+h.toString(36).toUpperCase().slice(0,6); }
 function renderTemplates(){
   $('#tgrid').innerHTML = TEMPLATES.map(t => `<div class="tcard ${t.id===st.tpl?'on':''}" data-t="${t.id}">${shirtSVG('front',{tpl:t.id, thumb:true})}<div>${t.name}</div></div>`).join('');
   $$('#sleeveSeg button').forEach(b=>b.classList.toggle('on', b.dataset.v===st.sleeve));
+  $$('#cutSeg button').forEach(b=>b.classList.toggle('on', b.dataset.v===st.cut));
+  $('#cutNote').textContent = CUTS[st.cut].note;
 }
 function renderColors(){ $('#colors').innerHTML = COLOR_SLOTS.map(([k,n])=>`<label class="cpick"><input type="color" data-k="${k}" value="${st.c[k]}"><span>${n}<small>${st.c[k].toUpperCase()}</small></span></label>`).join(''); }
 function renderPresets(){ $('#presets').innerHTML = COLORWAYS.map((p,i)=>`<div class="preset" data-p="${i}"><div class="sw">${['main','sleeve','pattern','trim'].map(k=>`<i style="background:${p[k]}"></i>`).join('')}</div><div class="n">${p.n}</div></div>`).join(''); }
 function dropHTML(logo){ return logo ? `<img src="${logo}" alt=""><b>Replace</b> · <a href="#" class="rm" style="color:var(--acid)">Remove</a>` : `<b>Click to upload</b> or drag &amp; drop<br><small>PNG (transparent) or SVG works best</small>`; }
 function renderFront(){
   $('#fL1').value = st.front.l1; $('#fL2').value = st.front.l2;
-  $('#styles').innerHTML = STYLES.map((s,i)=>`<div class="sty ${i===st.style?'on':''}" data-i="${i}" style="font-family:${s.chest.f};font-weight:${s.chest.w}">TEAM<small>${s.n}</small></div>`).join('');
-  $('.dropz[data-target=front] .dropInner').innerHTML = dropHTML(st.front.logo);
-  $('#frontLogoOpts').style.display = st.front.logo ? 'block' : 'none';
-  $$('#placeSeg button').forEach(b=>b.classList.toggle('on', b.dataset.v===st.front.place));
-  $('#fSize').value = st.front.size;
+  $$('.styles').forEach(box => box.innerHTML = STYLES.map((f,i)=>`<div class="sty ${i===st.style?'on':''} ${f.premium?'prem':''}" data-i="${i}" style="font-family:${f.chest.f};font-weight:${f.chest.w}">TEAM<small>${f.n}${f.premium?' · +$'+PRICE.premiumFont:' · free'}</small></div>`).join(''));
 }
 function renderBack(){
   $('#bName').value = st.back.name; $('#bNum').value = st.back.num; $('#bUl').checked = st.back.ul; $('#bBottom').value = st.back.bottom;
-  $('.dropz[data-target=back] .dropInner').innerHTML = dropHTML(st.back.logo);
-  $('#backSizeF').style.display = st.back.logo ? 'block' : 'none'; $('#bSize').value = st.back.size;
 }
 function renderSleeves(){
-  const opts = side => `<div class="flag none ${st.sl[side]==='none'?'on':''}" data-f="none">None</div>` +
-    Object.entries(FLAGS).map(([k,[n]])=>`<div class="flag ${st.sl[side]===k?'on':''}" data-f="${k}" title="${n}">${flagSVG(k)}<small>${n}</small></div>`).join('');
-  $('#flagsL').innerHTML = opts('left'); $('#flagsR').innerHTML = opts('right'); $('#sTag').value = st.sl.tag;
+  $('#flagsR').innerHTML = `<div class="flag none ${st.sl.flag==='none'?'on':''}" data-f="none">Blank</div>` +
+    Object.entries(FLAGS).map(([k,[n]])=>`<div class="flag ${st.sl.flag===k?'on':''}" data-f="${k}" title="${n}">${flagSVG(k)}<small>${n}</small></div>`).join('');
+  $$('#logoOpt button').forEach(b=>b.classList.toggle('on', (b.dataset.v==='remove') === !!st.sl.noLogo));
+  const p = priceCalc(); $('#rmPrice').textContent = p.team ? 'Free with your team order' : `+$${PRICE.removeLogo} · free for team orders`;
 }
 function summaryRows(){
   const fl = k => (k==='none' || !FLAGS[k]) ? '—' : FLAGS[k][0];
@@ -1009,19 +1388,20 @@ function summaryRows(){
     ['Design ID', designId()],
     ['Drop', TEMPLATES.find(x=>x.id===st.tpl).name + ' · ' + (st.sleeve==='long'?'Long sleeve':'Short sleeve')],
     ['Colors', COLOR_SLOTS.map(([k,n])=>`${n} ${st.c[k].toUpperCase()}`).join(' · ')],
-    ['Lettering', STYLES[st.style].n],
-    ['Chest text', [st.front.l1, st.front.l2].filter(s=>s.trim()).join(' / ') || '—'],
-    ['Front logo', st.front.logo ? ({center:'Center chest',left:'Left chest',right:'Right chest'})[st.front.place] : '—'],
+    ['Font', STYLES[st.style].n + (STYLES[st.style].premium ? ` (premium +$${PRICE.premiumFont})` : ' (free)')],
+    ['Team name', [st.front.l1, st.front.l2].filter(s=>s.trim()).join(' / ') || '—'],
     ['Back name', (st.back.name.trim()||'—') + (st.back.name.trim() && st.back.ul ? ' (underline)':'')],
-    ['Number', st.back.num || '—'], ['Back logo', st.back.logo ? 'Yes' : '—'], ['Bottom line', st.back.bottom || '—'],
-    ['Flags', `L: ${fl(st.sl.left)} · R: ${fl(st.sl.right)}`], ['Sleeve tag', st.sl.tag || '—'],
-    ['Fit / size', `${st.fit} ${st.size}`], ['Quantity', st.qty],
+    ['Number', st.back.num || '—'], ['Bottom line', st.back.bottom || '—'],
+    ['Left sleeve', st.sl.noLogo ? 'Logo removed' : 'KITCULT logo'], ['Right sleeve', st.sl.flag==='none' || !FLAGS[st.sl.flag] ? 'Blank' : FLAGS[st.sl.flag][0] + ' flag'],
+    ['Cut', CUTS[st.cut].n], ['Fabric', fabricOf().n], ['Size', st.size], ['Quantity', st.qty],
+    ['Price', (() => { const p = priceCalc(); return `${p.q} × ${money(p.unit)} = ${money(p.total)} USD + shipping`; })()],
   ];
 }
 function renderOrder(){
-  $$('#fitSeg button').forEach(b=>b.classList.toggle('on', b.dataset.v===st.fit));
-  $('#sizes').innerHTML = SIZES.map(s=>`<button class="${s===st.size?'on':''}" data-z="${s}">${s}</button>`).join('');
+  $('#fabrics').innerHTML = FABRICS.map(f=>`<button class="fab ${f.id===st.fabric?'on':''}" data-f="${f.id}"><b>${f.n}</b><span>${f.d}</span></button>`).join('');
+  $('#sizes').innerHTML = sizesFor().map(s=>`<button class="${s===st.size?'on':''}" data-z="${s}">${s}</button>`).join('');
   $('#qty').value = st.qty;
+  renderPrice();
   $('#summary').innerHTML = summaryRows().map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
 }
 function renderStep(){
@@ -1035,7 +1415,7 @@ function renderStep(){
 }
 function setView(v){ $$('#vtoggle button').forEach(b=>b.classList.toggle('on', b.dataset.v===v)); $$('.view').forEach(x=>x.classList.toggle('on', x.dataset.v===v)); }
 function all(){ renderPreview(); renderTemplates(); renderColors(); renderPresets(); renderFront(); renderBack(); renderSleeves(); renderOrder(); renderStep(); }
-function commit(...extra){ save(); renderPreview(); extra.forEach(f=>f()); renderOrder(); }
+function commit(...extra){ save(); renderPreview(); extra.forEach(f=>f()); renderOrder(); renderSleeves(); if(typeof updateBar==='function') updateBar(); }
 function pickTemplate(id, loadColors){
   const t = TEMPLATES.find(x=>x.id===id); st.tpl = id;
   if(loadColors) st.c = cwOf(t.cw);
@@ -1056,7 +1436,7 @@ $('#burger').onclick = () => setMenu(!document.body.classList.contains('menu-ope
 $$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 /* mobile bottom bar */
 let zone = 'top';
-const STEP_NAMES = ['Drop','Color','Front','Back','Sleeves','Size'];
+const STEP_NAMES = ['Drop','Color','Front','Back','Sleeves','Fit'];
 function updateBar(){
   const bar = $('#mbar'); if(!bar) return;
   if(zone === 'order'){ bar.classList.add('hide'); return; }
@@ -1064,7 +1444,7 @@ function updateBar(){
   if(zone === 'design'){
     const last = st.step===5;
     bar.innerHTML = `<button class="btn" id="mbPrev" ${st.step===0?'disabled style="opacity:.35"':''}>←</button>
-      <div class="stepinfo">Step ${st.step+1}/6<b>${STEP_NAMES[st.step]}</b></div>
+      <div class="stepinfo">Step ${st.step+1}/6 · ${STEP_NAMES[st.step]}<b class="mprice">${money(priceCalc().total)}</b></div>
       ${last ? `<a class="cta" href="#order">Order →</a>` : `<button class="cta" id="mbNext">Next: ${STEP_NAMES[st.step+1]} →</button>`}`;
     const p=$('#mbPrev'), n=$('#mbNext'); if(p) p.onclick=()=>goStep(st.step-1); if(n) n.onclick=()=>goStep(st.step+1);
   } else {
@@ -1090,33 +1470,31 @@ $('#colors').oninput = e => { const k=e.target.dataset.k; if(!k) return; st.c[k]
 $('#presets').onclick = e => { const p=e.target.closest('.preset'); if(p){ st.c=cwOf(+p.dataset.p); commit(renderTemplates, renderColors); } };
 $('#fL1').oninput = e => { st.front.l1=e.target.value; commit(); };
 $('#fL2').oninput = e => { st.front.l2=e.target.value; commit(); };
-$('#styles').onclick = e => { const s=e.target.closest('.sty'); if(s){ st.style=+s.dataset.i; commit(renderFront); } };
-$('#placeSeg').onclick = e => { const b=e.target.closest('button'); if(b){ st.front.place=b.dataset.v; commit(renderFront); } };
-$('#fSize').oninput = e => { st.front.size=+e.target.value; commit(); };
+$$('.styles').forEach(box => box.onclick = e => { const s=e.target.closest('.sty'); if(s){ st.style=+s.dataset.i; commit(renderFront); } });
 $('#bName').oninput = e => { st.back.name=e.target.value; commit(); };
 $('#bNum').oninput = e => { e.target.value=e.target.value.replace(/[^0-9]/g,''); st.back.num=e.target.value; commit(); };
 $('#bUl').onchange = e => { st.back.ul=e.target.checked; commit(); };
-$('#bSize').oninput = e => { st.back.size=+e.target.value; commit(); };
 $('#bBottom').oninput = e => { st.back.bottom=e.target.value; commit(); };
-$('#flagsL').onclick = e => { const f=e.target.closest('.flag'); if(f){ st.sl.left=f.dataset.f; commit(renderSleeves); } };
-$('#flagsR').onclick = e => { const f=e.target.closest('.flag'); if(f){ st.sl.right=f.dataset.f; commit(renderSleeves); } };
-$('#sTag').oninput = e => { st.sl.tag=e.target.value; commit(); };
-$$('.dropz').forEach(d => {
-  const target = d.dataset.target, input = d.querySelector('input');
-  const set = v => { st[target].logo = v; commit(target==='front'?renderFront:renderBack); };
-  const read = file => {
-    if(!file || !file.type.startsWith('image/')) return toast('Please choose an image file');
-    if(file.size > 5*1024*1024) return toast('File is over 5 MB. Try a smaller one');
-    const r = new FileReader(); r.onload = () => { set(r.result); toast('Logo added'); }; r.readAsDataURL(file);
-  };
-  d.onclick = e => { if(e.target.classList.contains('rm')){ e.preventDefault(); e.stopPropagation(); set(null); input.value=''; return; } input.click(); };
-  input.onclick = e => e.stopPropagation();
-  input.onchange = e => read(e.target.files[0]);
-  d.ondragover = e => { e.preventDefault(); d.classList.add('over'); };
-  d.ondragleave = () => d.classList.remove('over');
-  d.ondrop = e => { e.preventDefault(); d.classList.remove('over'); read(e.dataTransfer.files[0]); };
-});
-$('#fitSeg').onclick = e => { const b=e.target.closest('button'); if(b){ st.fit=b.dataset.v; commit(); } };
+$('#flagsR').onclick = e => { const f=e.target.closest('.flag'); if(f){ st.sl.flag=f.dataset.f; commit(); } };
+$('#logoOpt').onclick = e => { const b=e.target.closest('button'); if(b){ st.sl.noLogo = b.dataset.v==='remove'; commit(); } };
+$('#teamStart').onclick = () => { st.qty = Math.max(st.qty, PRICE.teamMin); commit(); toast(`Team pricing on: ${money(PRICE.team)} each for ${PRICE.teamMin}+`); document.getElementById('order').scrollIntoView({behavior:'smooth'}); };
+/* own logo: contact popup */
+const logoModal = $('#logoModal');
+function openLogo(){
+  const id = designId(); $('#logoDid').textContent = id;
+  $('#logoContacts').innerHTML = contactsHTML();
+  $('#logoMail').href = `mailto:${SHOP.email}?subject=${encodeURIComponent('Own logo for design ' + id)}&body=${encodeURIComponent('Hi KITCULT,\n\nI want my own logo on design ' + id + '. Logo attached.\n\nPlacement (chest / back):\n')}`;
+  logoModal.classList.add('on'); logoModal.setAttribute('aria-hidden','false'); document.body.classList.add('lock');
+}
+function closeLogo(){ logoModal.classList.remove('on'); logoModal.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
+$$('.js-logo').forEach(b => b.onclick = openLogo);
+$('#logoClose').onclick = closeLogo;
+logoModal.onclick = e => { if(e.target === logoModal) closeLogo(); };
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLogo(); });
+$('#logoCopy').onclick = () => copyText(designId(), 'Design ID copied');
+$('#fabrics').onclick = e => { const b=e.target.closest('.fab'); if(b){ st.fabric=b.dataset.f; commit(); } };
+$('#cutSeg').onclick = e => { const b=e.target.closest('button'); if(!b) return; st.cut=b.dataset.v;
+  if(!sizesFor().includes(st.size)) st.size = st.cut==='kids' ? 'K8' : 'M'; commit(renderTemplates); };
 $('#sizes').onclick = e => { const b=e.target.closest('button'); if(b){ st.size=b.dataset.z; commit(); } };
 $('#qMinus').onclick = () => { st.qty=Math.max(1,st.qty-1); commit(); };
 $('#qPlus').onclick = () => { st.qty=Math.min(999,st.qty+1); commit(); };
@@ -1137,7 +1515,7 @@ function orderText(){
     summaryRows().map(([k,x])=>`${k}: ${x}`).join('\n');
   if(v('oRoster')) t += `\n\nROSTER (name, number, size)\n${v('oRoster')}`;
   if(v('oNotes')) t += `\n\nNOTES\n${v('oNotes')}`;
-  if(st.front.logo||st.back.logo) t += `\n\n(Logo files attached separately)`;
+  t += `\n\nShipping calculated by region at checkout.`;
   return t;
 }
 $('#orderForm').onsubmit = e => {
